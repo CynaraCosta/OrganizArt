@@ -12,6 +12,8 @@
 		A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B228CF5288005E52B9 /* ViewController.swift */; };
 		A4A446B828CF528A005E52B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A446B728CF528A005E52B9 /* Assets.xcassets */; };
 		A4A446BB28CF528A005E52B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A446B928CF528A005E52B9 /* LaunchScreen.storyboard */; };
+		A4A446C628CF5867005E52B9 /* mudaJoana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446C528CF5867005E52B9 /* mudaJoana.swift */; };
+		A4A446C828CF5870005E52B9 /* mudaLeite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446C728CF5870005E52B9 /* mudaLeite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A4A446B728CF528A005E52B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4A446BA28CF528A005E52B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4A446BC28CF528A005E52B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4A446C528CF5867005E52B9 /* mudaJoana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mudaJoana.swift; sourceTree = "<group>"; };
+		A4A446C728CF5870005E52B9 /* mudaLeite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mudaLeite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		A4A446C328CF57D5005E52B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4A446C728CF5870005E52B9 /* mudaLeite.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -84,6 +89,7 @@
 		A4A446C428CF57DA005E52B9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A4A446C528CF5867005E52B9 /* mudaJoana.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,7 +166,9 @@
 			files = (
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
+				A4A446C628CF5867005E52B9 /* mudaJoana.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
+				A4A446C828CF5870005E52B9 /* mudaLeite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
