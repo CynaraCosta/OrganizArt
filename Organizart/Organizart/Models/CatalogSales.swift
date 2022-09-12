@@ -13,7 +13,6 @@ extension Sale {
         return [
             
             Sale(
-                clientName: "Eduardo Loureiro Carvalho",
                 saleFormat: "Instagram",
                 productsChosen: [Product(
                     title: "Planner Peroba",
