@@ -86,6 +86,7 @@ class HomeView: UIView {
         NSLayoutConstraint.activate([
             card.topAnchor.constraint(equalTo: invoicingLabel.bottomAnchor, constant: 8),
             card.leadingAnchor.constraint(equalTo: invoicingLabel.leadingAnchor),
+            card.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32)
         ])
 
         topProduct.translatesAutoresizingMaskIntoConstraints = false
