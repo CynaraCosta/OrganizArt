@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Produto_CoreData" representedClassName="Produto_CoreData" syncable="YES">
+        <attribute name="description_" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="stock" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Sale_CoreData" representedClassName="Sale_CoreData" syncable="YES">
+        <attribute name="clientName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productsChosen" optional="YES" attributeType="Transformable"/>
+        <attribute name="saleFormat" optional="YES" attributeType="String"/>
+        <attribute name="totalPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="Produto_CoreData" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Sale_CoreData" positionX="-54" positionY="27" width="128" height="104"/>
+    </elements>
+</model>

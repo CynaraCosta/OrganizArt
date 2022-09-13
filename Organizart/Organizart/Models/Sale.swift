@@ -8,7 +8,7 @@
 import Foundation
 
 struct Sale {
-    let clientName: String? = nil
+    var clientName: String? = nil
     let saleFormat: String
     let productsChosen: [Product]
     let id: Int
