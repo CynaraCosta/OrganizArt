@@ -7,68 +7,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let loggingProducts = Product.logProducts()
-    let logginSales = Sale.logSales()
-    
-    var productsModel = [Produto_CoreData]()
-    
-    let HomeView_ = HomeView()
+class ViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAllProducts()
-        self.view = HomeView_
-        // Do any additional setup after loading the view.
-    }
-    
-    // CoreData - Products
-    
-    func getAllProducts(){
-        do {
-            productsModel = try context.fetch(Produto_CoreData.fetchRequest())
+        self.tabBar.backgroundColor = .systemBackground
+        let Images = ["house", "bag", "shippingbox"]
+        
+        let homeVC = HomeViewController()
+        homeVC.title = "Início"
+        let salesVC = SalesViewController()
+        salesVC.title = "Vendas"
+        let productsVC = ProductsViewController()
+        productsVC.title = "Produtos"
+        
+        self.setViewControllers([homeVC, salesVC, productsVC], animated: false)
+        guard let items = self.tabBar.items else {return}
+        
+        for vc in (0...Images.count - 1) {
+            items[vc].image = UIImage(systemName: Images[vc])
         }
-        catch {
-            // error
-        }
+        
+        self.tabBar.tintColor = UIColor(named: "purple-700")
+        self.tabBar.unselectedItemTintColor = UIColor(named: "purple-500")
         
     }
     
-    func newProduct(title: String, description_: String, price: Float, stock: Int32, picture: String){
-        let newProduct = Produto_CoreData(context: context)
-        newProduct.title = title
-        newProduct.description_ = description_
-        newProduct.price = price
-        newProduct.stock = stock
-        newProduct.picture = picture
-        
-        do {
-            try context.save()
-            getAllProducts()
-        }
-        catch {
-            // error
-        }
-        
-    }
     
-    func deleteProduct(product: Produto_CoreData){
-        context.delete(product)
-        
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-        
-    }
-    
-//    func updateProduct(titleProduct: Produto_CoreData){
-//
-//    }
-
 }
 

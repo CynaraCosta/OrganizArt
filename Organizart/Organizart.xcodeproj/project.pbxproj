@@ -15,6 +15,12 @@
 		A44817CA28D0AEFE009CF192 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817C928D0AEFE009CF192 /* HomeView.swift */; };
 		A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */; };
 		A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817CD28D0E996009CF192 /* UIPreview.swift */; };
+		A44817D028D0FB5F009CF192 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817CF28D0FB5E009CF192 /* ProductsViewController.swift */; };
+		A44817D228D0FB6B009CF192 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D128D0FB6B009CF192 /* SalesViewController.swift */; };
+		A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D328D0FBB8009CF192 /* ProductsView.swift */; };
+		A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D528D0FBC0009CF192 /* SalesView.swift */; };
+		A44817D828D0FC04009CF192 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D728D0FC04009CF192 /* TabBarViewController.swift */; };
+		A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D928D100A4009CF192 /* HomeViewController.swift */; };
 		A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446AE28CF5288005E52B9 /* AppDelegate.swift */; };
 		A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B028CF5288005E52B9 /* SceneDelegate.swift */; };
 		A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B228CF5288005E52B9 /* ViewController.swift */; };
@@ -35,6 +41,12 @@
 		A44817C928D0AEFE009CF192 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewInvoicing.swift; sourceTree = "<group>"; };
 		A44817CD28D0E996009CF192 /* UIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreview.swift; sourceTree = "<group>"; };
+		A44817CF28D0FB5E009CF192 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		A44817D128D0FB6B009CF192 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
+		A44817D328D0FBB8009CF192 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		A44817D528D0FBC0009CF192 /* SalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesView.swift; sourceTree = "<group>"; };
+		A44817D728D0FC04009CF192 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A44817D928D100A4009CF192 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A4A446AB28CF5288005E52B9 /* Organizart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Organizart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A446AE28CF5288005E52B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A446B028CF5288005E52B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +125,11 @@
 		A4A446C228CF57C0005E52B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A44817CF28D0FB5E009CF192 /* ProductsViewController.swift */,
+				A44817D128D0FB6B009CF192 /* SalesViewController.swift */,
 				A4A446B228CF5288005E52B9 /* ViewController.swift */,
+				A44817D728D0FC04009CF192 /* TabBarViewController.swift */,
+				A44817D928D100A4009CF192 /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -123,6 +139,8 @@
 			children = (
 				A44817C928D0AEFE009CF192 /* HomeView.swift */,
 				A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */,
+				A44817D328D0FBB8009CF192 /* ProductsView.swift */,
+				A44817D528D0FBC0009CF192 /* SalesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,15 +233,21 @@
 				A44817CA28D0AEFE009CF192 /* HomeView.swift in Sources */,
 				A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */,
 				C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */,
+				A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */,
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
+				A44817D828D0FC04009CF192 /* TabBarViewController.swift in Sources */,
+				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
+				A44817D028D0FB5F009CF192 /* ProductsViewController.swift in Sources */,
 				A44817C528D0AC52009CF192 /* Sale_CoreData+CoreDataProperties.swift in Sources */,
 				C1E42B1A28CF6499002E8459 /* Sale.swift in Sources */,
+				A44817D228D0FB6B009CF192 /* SalesViewController.swift in Sources */,
 				A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */,
 				C1E42B1828CF63CC002E8459 /* Product.swift in Sources */,
+				A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */,
 				A44817BF28D0A5FB009CF192 /* Produto+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
