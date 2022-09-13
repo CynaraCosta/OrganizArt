@@ -12,6 +12,10 @@ class HomeView: UIView {
     private let cardView: UIView = {
         let cardView = UIView()
         let teste = UILabel()
+        teste.text = "teste"
+        cardView.addSubview(teste)
+        cardView.backgroundColor = .green
+        cardView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         return cardView
     }()
     
@@ -74,10 +78,16 @@ class HomeView: UIView {
         
         cardView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: invoicingLabel.bottomAnchor, constant: 8),
-            cardView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8),
-            cardView.leftAnchor.constraint(equalTo: invoicingLabel.leftAnchor)
+//            cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: 88),
+//            cardView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 32),
         ])
+        
+//        cardView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            cardView.topAnchor.constraint(equalTo: invoicingLabel.bottomAnchor, constant: 8),
+//            cardView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8),
+//            cardView.leftAnchor.constraint(equalTo: invoicingLabel.leftAnchor),
+//        ])
         
     }
     

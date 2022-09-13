@@ -13,6 +13,7 @@ class CardViewInvoicing: UIView {
 //    cardViewInvoicing.layer.cornerRadius = 8
 //    // set width at the constraints with constant.frame.width * 0.8
 //    return cardViewInvoicing
+//    lalal
 
     private let invoicingValue: UILabel = {
         let invoicingValue = UILabel()
