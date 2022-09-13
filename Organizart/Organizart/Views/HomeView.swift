@@ -9,6 +9,8 @@ import UIKit
 
 class HomeView: UIView {
     
+    let card = CardViewInvoicing()
+    
     private let cardView: UIView = {
         let cardView = UIView()
         let teste = UILabel()
@@ -29,7 +31,7 @@ class HomeView: UIView {
     private let invoicingLabel: UILabel = {
         let invoicingLabel = UILabel()
         invoicingLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 25)
-        invoicingLabel.font = UIFont(name: "ArialHebrew-Bold", size: 28)
+        invoicingLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
         invoicingLabel.text = "Faturamento"
         invoicingLabel.textColor = .label
         return invoicingLabel
@@ -38,6 +40,9 @@ class HomeView: UIView {
     private let topProduct: UILabel = {
         let topProduct = UILabel()
         topProduct.text = "Produtos mais vendidos"
+        topProduct.frame = CGRect(x: 0, y: 0, width: 150, height: 25)
+        topProduct.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        topProduct.textColor = .label
         return topProduct
     }()
     
@@ -51,7 +56,8 @@ class HomeView: UIView {
         super.init(frame: frame)
         addSubview(backgroundView)
         addSubview(invoicingLabel)
-        addSubview(cardView)
+        addSubview(card)
+        addSubview(topProduct)
         setupConstraints()
         
     }
@@ -72,24 +78,35 @@ class HomeView: UIView {
         
         invoicingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            invoicingLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 80),
+            invoicingLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             invoicingLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 32),
         ])
         
-        cardView.translatesAutoresizingMaskIntoConstraints = false
+        card.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: 88),
-//            cardView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 32),
+            card.topAnchor.constraint(equalTo: invoicingLabel.bottomAnchor, constant: 8),
+            card.leadingAnchor.constraint(equalTo: invoicingLabel.leadingAnchor),
         ])
-        
-//        cardView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            cardView.topAnchor.constraint(equalTo: invoicingLabel.bottomAnchor, constant: 8),
-//            cardView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8),
-//            cardView.leftAnchor.constraint(equalTo: invoicingLabel.leftAnchor),
-//        ])
+
+        topProduct.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topProduct.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 24),
+            topProduct.leadingAnchor.constraint(equalTo: card.leadingAnchor),
+        ])
         
     }
     
     
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct HomeView_Preview: PreviewProvider {
+    static var previews: some View {
+        Group {
+            HomeView().showPreview().previewDevice("iPhone 13")        }
+    }
+}
+#endif
