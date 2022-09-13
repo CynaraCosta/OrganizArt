@@ -19,7 +19,6 @@
 		A44817D228D0FB6B009CF192 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D128D0FB6B009CF192 /* SalesViewController.swift */; };
 		A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D328D0FBB8009CF192 /* ProductsView.swift */; };
 		A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D528D0FBC0009CF192 /* SalesView.swift */; };
-		A44817D828D0FC04009CF192 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D728D0FC04009CF192 /* TabBarViewController.swift */; };
 		A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D928D100A4009CF192 /* HomeViewController.swift */; };
 		A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446AE28CF5288005E52B9 /* AppDelegate.swift */; };
 		A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B028CF5288005E52B9 /* SceneDelegate.swift */; };
@@ -45,7 +44,6 @@
 		A44817D128D0FB6B009CF192 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
 		A44817D328D0FBB8009CF192 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		A44817D528D0FBC0009CF192 /* SalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesView.swift; sourceTree = "<group>"; };
-		A44817D728D0FC04009CF192 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A44817D928D100A4009CF192 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A4A446AB28CF5288005E52B9 /* Organizart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Organizart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A446AE28CF5288005E52B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				A44817CF28D0FB5E009CF192 /* ProductsViewController.swift */,
 				A44817D128D0FB6B009CF192 /* SalesViewController.swift */,
 				A4A446B228CF5288005E52B9 /* ViewController.swift */,
-				A44817D728D0FC04009CF192 /* TabBarViewController.swift */,
 				A44817D928D100A4009CF192 /* HomeViewController.swift */,
 			);
 			path = Controllers;
@@ -237,7 +234,6 @@
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
-				A44817D828D0FC04009CF192 /* TabBarViewController.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
