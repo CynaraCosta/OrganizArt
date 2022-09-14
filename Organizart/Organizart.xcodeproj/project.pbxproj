@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A93BA1D28D24AC7002A7A4C /* TopProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93BA1C28D24AC7002A7A4C /* TopProductsCollectionViewCell.swift */; };
 		A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A44817BA28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld */; };
 		A44817BF28D0A5FB009CF192 /* Produto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */; };
 		A44817C028D0A5FB009CF192 /* Produto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817BE28D0A5FB009CF192 /* Produto+CoreDataProperties.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A93BA1C28D24AC7002A7A4C /* TopProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A44817BB28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrganizartDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Produto+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A44817BE28D0A5FB009CF192 /* Produto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Produto+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -125,10 +127,10 @@
 		A4A446C228CF57C0005E52B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A44817D928D100A4009CF192 /* HomeViewController.swift */,
 				A44817CF28D0FB5E009CF192 /* ProductsViewController.swift */,
 				A44817D128D0FB6B009CF192 /* SalesViewController.swift */,
 				A4A446B228CF5288005E52B9 /* ViewController.swift */,
-				A44817D928D100A4009CF192 /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A44817C928D0AEFE009CF192 /* HomeView.swift */,
+				3A93BA1C28D24AC7002A7A4C /* TopProductsCollectionViewCell.swift */,
 				A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */,
 				A44817D328D0FBB8009CF192 /* ProductsView.swift */,
 				A44817D528D0FBC0009CF192 /* SalesView.swift */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A44817C028D0A5FB009CF192 /* Produto+CoreDataProperties.swift in Sources */,
+				3A93BA1D28D24AC7002A7A4C /* TopProductsCollectionViewCell.swift in Sources */,
 				A44817C428D0AC52009CF192 /* Sale_CoreData+CoreDataClass.swift in Sources */,
 				A44817CA28D0AEFE009CF192 /* HomeView.swift in Sources */,
 				A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */,
