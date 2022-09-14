@@ -17,11 +17,26 @@ class AddProductViewController: UIViewController {
     
     @objc private func save(){
         // do something at the core data
-        dismiss(animated: true)
+        
+        let Home = HomeViewController()
+        let stockV = stockValue.text!
+        let priceV = inputPrice.text!
+        
+        if let stock = Int(stockV), let price = Float(priceV) {
+            let stockFlex = stock
+            let priceFlex = price
+            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "aaaaa")
+            labelError.isHidden = true
+            dismiss(animated: true)
+        } else {
+            labelError.isHidden = false
+        }
+        
+        // resolver a questao da foto
+        
     }
     
     @objc private func increase(){
-        print("aaaa")
         stockValue.text = String(Int(stockValue.text!) ?? 1 + 1)
         stockValue.reloadInputViews()
     }
@@ -32,7 +47,6 @@ class AddProductViewController: UIViewController {
     }
     
     @objc private func addPhoto(){
-        print("aaaaaaaa")
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
@@ -78,6 +92,7 @@ class AddProductViewController: UIViewController {
     private let imagePhoto: UIImageView = {
         let image = UIImageView()
         image.isHidden = true
+        image.layer.cornerRadius = 8
         return image
     }()
     
@@ -163,6 +178,17 @@ class AddProductViewController: UIViewController {
         return inputPrice
     }()
     
+    private let labelError: UILabel = {
+        let labelError = UILabel()
+        labelError.isHidden = true
+        labelError.text = "Favor colocar um valor numérico para o preço!"
+        labelError.textColor = UIColor(named: "red-700")
+        labelError.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        labelError.numberOfLines = 2
+        labelError.textAlignment = .center
+        return labelError
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -174,6 +200,9 @@ class AddProductViewController: UIViewController {
         self.view.addSubview(inputName)
         self.view.addSubview(inputDescription)
         self.view.addSubview(inputPrice)
+        self.view.addSubview(labelError)
+        
+        
         
         setupConstraints()
         
@@ -256,6 +285,14 @@ class AddProductViewController: UIViewController {
             inputPrice.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
             inputPrice.topAnchor.constraint(equalTo: inputDescription.bottomAnchor, constant: 8),
             inputPrice.heightAnchor.constraint(equalToConstant: 42),
+        ])
+        
+        labelError.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            labelError.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            labelError.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 48),
+            labelError.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -48),
+            labelError.topAnchor.constraint(equalTo: inputPrice.bottomAnchor, constant: 32)
         ])
         
     }
