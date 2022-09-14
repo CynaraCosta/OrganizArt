@@ -22,6 +22,7 @@ class ProductsViewController: UIViewController {
     
     @objc private func addProduct(){
         let rootVC = AddProductViewController()
+        rootVC.view.backgroundColor = UIColor(named: "purple-80")
         rootVC.title = "Adicionar produto"
         let navVC = UINavigationController(rootViewController: rootVC)
         navVC.modalPresentationStyle = .fullScreen
