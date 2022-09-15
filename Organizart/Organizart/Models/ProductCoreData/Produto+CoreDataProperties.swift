@@ -16,8 +16,8 @@ extension Produto_CoreData {
         return NSFetchRequest<Produto_CoreData>(entityName: "Produto_CoreData")
     }
 
-    @NSManaged public var title: String?
-    @NSManaged public var description_: String?
+    @NSManaged public var title: String
+    @NSManaged public var description_: String
     @NSManaged public var price: Float
     @NSManaged public var stock: Int32
     @NSManaged public var picture: String?

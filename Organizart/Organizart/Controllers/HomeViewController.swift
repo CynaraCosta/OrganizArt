@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         getAllProducts()
         print(productsModel.count)
+//        for product in productsModel {
+//            deleteProduct(product: product)
+//        }
 
     }
     

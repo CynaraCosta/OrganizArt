@@ -18,6 +18,11 @@ extension ProductsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = ShowProductsCell.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ShowProductsCell else {return UITableViewCell()}
+        
+        Home.getAllProducts()
+//        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: Home.productsModel[indexPath.row].picture!)
+        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: "cabeca")
+        
         return cell
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Photos
 
 class AddProductViewController: UIViewController {
     
@@ -25,7 +26,7 @@ class AddProductViewController: UIViewController {
         if let stock = Int(stockV), let price = Float(priceV) {
             let stockFlex = stock
             let priceFlex = price
-            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "aaaaa")
+            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "cabeca")
             labelError.isHidden = true
             dismiss(animated: true)
         } else {
@@ -66,14 +67,14 @@ class AddProductViewController: UIViewController {
         addImageLabel.text = "Adicionar foto"
         addImageLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         addImageLabel.textColor = UIColor(named: "purple-700")
-
+        
         
         buttonImage.addSubview(imageCamera)
         buttonImage.addSubview(addImageLabel)
         
         imageCamera.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            imageCamera.topAnchor.constraint(equalTo: buttonImage.topAnchor, constant: 100),
+            //            imageCamera.topAnchor.constraint(equalTo: buttonImage.topAnchor, constant: 100),
             imageCamera.centerXAnchor.constraint(equalTo: buttonImage.centerXAnchor),
             imageCamera.topAnchor.constraint(equalTo: buttonImage.topAnchor, constant: 100)
         ])
@@ -125,11 +126,11 @@ class AddProductViewController: UIViewController {
         stockValue.keyboardType = UIKeyboardType.numberPad
         stockValue.layer.cornerRadius = 8
         stockValue.backgroundColor = UIColor(named: "purple-700")
-//        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 15
-//                                                       , height: 20))
-//        stockValue.leftView = paddingView
-//        stockValue.leftViewMode = .always
-
+        //        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 15
+        //                                                       , height: 20))
+        //        stockValue.leftView = paddingView
+        //        stockValue.leftViewMode = .always
+        
         return stockValue
     }()
     
@@ -223,8 +224,8 @@ class AddProductViewController: UIViewController {
         buttonImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             buttonImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-//            buttonImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 102),
-//            buttonImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -102),
+            //            buttonImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 102),
+            //            buttonImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -102),
             buttonImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             buttonImage.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.5),
             buttonImage.heightAnchor.constraint(equalToConstant: self.view.frame.height * 0.3)
@@ -233,8 +234,8 @@ class AddProductViewController: UIViewController {
         imagePhoto.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imagePhoto.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-//            buttonImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 102),
-//            buttonImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -102),
+            //            buttonImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 102),
+            //            buttonImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -102),
             imagePhoto.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             imagePhoto.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.5),
             imagePhoto.heightAnchor.constraint(equalToConstant: self.view.frame.height * 0.3)
@@ -254,7 +255,7 @@ class AddProductViewController: UIViewController {
         NSLayoutConstraint.activate([
             buttonPlusP.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
             buttonPlusP.trailingAnchor.constraint(equalTo: stockValue.leadingAnchor, constant: -8)
-//            buttonPlusP.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            //            buttonPlusP.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
         ])
         
         buttonMinusP.translatesAutoresizingMaskIntoConstraints = false
@@ -289,7 +290,7 @@ class AddProductViewController: UIViewController {
         
         labelError.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            labelError.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            //            labelError.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             labelError.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 48),
             labelError.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -48),
             labelError.topAnchor.constraint(equalTo: inputPrice.bottomAnchor, constant: 32)
@@ -306,10 +307,16 @@ extension AddProductViewController: UIImagePickerControllerDelegate, UINavigatio
             buttonImage.isHidden = true
             imagePhoto.image = image
             imagePhoto.isHidden = false
-            
         }
+        
+//        if let asset = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.phAsset.rawValue) ] as? PHAsset {
+//            let assetResources = PHAssetResource.assetResources(for: asset)
+//            assetResources.first!.originalFilename)
+//            
+//        }
+        
         picker.dismiss(animated: true, completion: nil)
-
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
