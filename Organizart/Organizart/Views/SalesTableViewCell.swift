@@ -29,6 +29,35 @@ class SalesTableViewCell: UITableViewCell {
         
     }()
     
+    private var firstAmountLabel: UILabel = {
+        var amountLabel = UILabel()
+        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+        amountLabel.backgroundColor = .yellow
+        amountLabel.text = "15"
+        
+        return amountLabel
+    }()
+    
+    private var secondAmountLabel: UILabel = {
+        var amountLabel = UILabel()
+        amountLabel.isHidden = true
+        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+        amountLabel.backgroundColor = .yellow
+        amountLabel.text = "15"
+        
+        return amountLabel
+    }()
+    
+    private var thirdAmountLabel: UILabel = {
+        var amountLabel = UILabel()
+        amountLabel.isHidden = true
+        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+        amountLabel.backgroundColor = .yellow
+        amountLabel.text = "15"
+        
+        return amountLabel
+    }()
+    
     private var firstProductChosenLabel: UILabel = {
         var productChosenLabel = UILabel()
         productChosenLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
@@ -130,18 +159,42 @@ class SalesTableViewCell: UITableViewCell {
         stackPrice.alignment = .trailing
         stackPrice.spacing = 7
         stackPrice.translatesAutoresizingMaskIntoConstraints = false
-//        stackPrice.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        
+
         return stackPrice
     }()
     
-    var stackViewAmount: UIStackView = {
+    var stackViewFirstAmount: UIStackView = {
         var stackAmount = UIStackView()
         stackAmount.backgroundColor = .purple
-        
+        stackAmount.axis = .horizontal
+        stackAmount.distribution = .fill
+        stackAmount.alignment = .leading
+        stackAmount.spacing = 9
+
         return stackAmount
     }()
     
+    var stackViewSecondAmount: UIStackView = {
+        var stackAmount = UIStackView()
+        stackAmount.backgroundColor = .purple
+        stackAmount.axis = .horizontal
+        stackAmount.distribution = .fill
+        stackAmount.alignment = .leading
+        stackAmount.spacing = 9
+
+        return stackAmount
+    }()
+    
+    var stackViewThirdAmount: UIStackView = {
+        var stackAmount = UIStackView()
+        stackAmount.backgroundColor = .purple
+        stackAmount.axis = .horizontal
+        stackAmount.distribution = .fill
+        stackAmount.alignment = .leading
+        stackAmount.spacing = 9
+
+        return stackAmount
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "SalesTableViewCell")
@@ -161,9 +214,20 @@ class SalesTableViewCell: UITableViewCell {
         
         stackViewInfo.addArrangedSubview(orderIdLabel)
         stackViewInfo.addArrangedSubview(clientNameLabel)
-        stackViewInfo.addArrangedSubview(firstProductChosenLabel)
-        stackViewInfo.addArrangedSubview(secondProductChosenLabel)
-        stackViewInfo.addArrangedSubview(thirdProductChosenLabel)
+        stackViewInfo.addArrangedSubview(stackViewFirstAmount)
+        stackViewInfo.addArrangedSubview(stackViewSecondAmount)
+        stackViewInfo.addArrangedSubview(stackViewThirdAmount)
+
+        
+        stackViewFirstAmount.addArrangedSubview(firstAmountLabel)
+        stackViewFirstAmount.addArrangedSubview(firstProductChosenLabel)
+        
+        stackViewSecondAmount.addArrangedSubview(secondAmountLabel)
+        stackViewSecondAmount.addArrangedSubview(secondProductChosenLabel)
+        
+        stackViewThirdAmount.addArrangedSubview(thirdAmountLabel)
+        stackViewThirdAmount.addArrangedSubview(thirdProductChosenLabel)
+        
         stackViewInfo.addArrangedSubview(UIView())
         
         stackViewPrice.addArrangedSubview(totalPriceLabel)
@@ -198,13 +262,18 @@ class SalesTableViewCell: UITableViewCell {
     func set(sale: Sale) {
         orderIdLabel.text = String(sale.id)
         clientNameLabel.text = sale.clientName
-        firstProductChosenLabel.text = sale.productsChosen[0].title
+        firstAmountLabel.text = String(sale.productsChosen[0].amount)
+        firstProductChosenLabel.text = sale.productsChosen[0].product.title
         if sale.productsChosen.count == 2 {
             secondProductChosenLabel.isHidden = false
-            secondProductChosenLabel.text = sale.productsChosen[1].title
+            secondAmountLabel.isHidden = false
+            secondAmountLabel.text = String(sale.productsChosen[1].amount)
+            secondProductChosenLabel.text = sale.productsChosen[1].product.title
         } else if sale.productsChosen.count == 3 {
             thirdProductChosenLabel.isHidden = false
-            thirdProductChosenLabel.text = sale.productsChosen[2].title
+            thirdAmountLabel.isHidden = false
+            thirdAmountLabel.text = String(sale.productsChosen[2].amount)
+            thirdProductChosenLabel.text = sale.productsChosen[2].product.title
         }
         
         totalPriceLabel.text = String(sale.totalPrice)
@@ -213,14 +282,6 @@ class SalesTableViewCell: UITableViewCell {
         
     }
     
-//    func configureLabels() {
-//        orderIdLabel.numberOfLines = 0
-//        clientNameLabel.numberOfLines = 0
-//        productChosenLabel.numberOfLines = 0
-//        totalPriceLabel.numberOfLines = 0
-//        saleFormatLabel.numberOfLines = 0
-//    }
-
 }
 
 

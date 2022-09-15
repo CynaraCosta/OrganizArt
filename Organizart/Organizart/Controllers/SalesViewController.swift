@@ -25,6 +25,7 @@ class SalesViewController: UIViewController {
     func configureTableView() {
         setTableViewDelegates()
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         tableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "SalesTableViewCell")
         
         

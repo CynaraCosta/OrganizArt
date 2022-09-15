@@ -10,7 +10,7 @@ import Foundation
 struct Sale {
     var clientName: String? = nil
     let saleFormat: String
-    let productsChosen: [Product]
+    let productsChosen: [ProductSold]
     let id: Int
     let totalPrice: Float
 }
