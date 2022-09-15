@@ -32,6 +32,7 @@
 		C1E42B1A28CF6499002E8459 /* Sale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1928CF6499002E8459 /* Sale.swift */; };
 		C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1B28CF652D002E8459 /* CatalogProducts.swift */; };
 		C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1D28CF6B11002E8459 /* CatalogSales.swift */; };
+		C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		C1E42B1928CF6499002E8459 /* Sale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sale.swift; sourceTree = "<group>"; };
 		C1E42B1B28CF652D002E8459 /* CatalogProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogProducts.swift; sourceTree = "<group>"; };
 		C1E42B1D28CF6B11002E8459 /* CatalogSales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogSales.swift; sourceTree = "<group>"; };
+		C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +147,11 @@
 				A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */,
 				A44817D328D0FBB8009CF192 /* ProductsView.swift */,
 				A44817D528D0FBC0009CF192 /* SalesView.swift */,
+
 				A44817DF28D27D3E009CF192 /* ShowProductsCell.swift */,
+
+				C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */,
+
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
+				C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
 				A44817D028D0FB5F009CF192 /* ProductsViewController.swift in Sources */,
