@@ -26,7 +26,7 @@ class AddProductViewController: UIViewController {
         if let stock = Int(stockV), let price = Float(priceV) {
             let stockFlex = stock
             let priceFlex = price
-            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "cabeca")
+            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "\(inputName.text).png")
             labelError.isHidden = true
             dismiss(animated: true)
         } else {
@@ -321,15 +321,27 @@ extension AddProductViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
             buttonImage.isHidden = true
-            imagePhoto.image = image
+//            imagePhoto.image = image
             imagePhoto.isHidden = false
+            
+//            let data = image.pngData()! as NSData
+            
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsURL.appendingPathComponent("\(inputName.text).png")
+            let pngImage = image.pngData()! as NSData
+            do {
+                try pngImage.write(to: fileURL, options: .atomic)
+            } catch {
+                print("error")
+            }
+            
+            let filePath = documentsURL.appendingPathComponent("\(inputName.text).png").path
+            if FileManager.default.fileExists(atPath: filePath) {
+                let new = UIImage(contentsOfFile: filePath)
+                imagePhoto.image = new
+            }
+            
         }
-        
-//        if let asset = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.phAsset.rawValue) ] as? PHAsset {
-//            let assetResources = PHAssetResource.assetResources(for: asset)
-//            assetResources.first!.originalFilename)
-//            
-//        }
         
         picker.dismiss(animated: true, completion: nil)
         
