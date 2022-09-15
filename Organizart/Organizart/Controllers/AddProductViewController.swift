@@ -75,7 +75,8 @@ class AddProductViewController: UIViewController {
         buttonImage.backgroundColor = .systemBackground
         
         let imageCamera = UIImageView()
-        imageCamera.image = UIImage(named: "camera")
+        imageCamera.image = UIImage(systemName: "camera")
+        imageCamera.tintColor = UIColor(named: "purple-700")
         
         let addImageLabel = UILabel()
         addImageLabel.text = "Adicionar foto"
