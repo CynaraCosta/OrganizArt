@@ -24,7 +24,7 @@ class SalesViewController: UIViewController {
     
     func configureTableView() {
         setTableViewDelegates()
-        tableView.rowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "SalesTableViewCell")
         
         
@@ -40,6 +40,7 @@ class SalesViewController: UIViewController {
     func setTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
+
     }
     
 
