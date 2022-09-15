@@ -38,12 +38,26 @@ class AddProductViewController: UIViewController {
     }
     
     @objc private func increase(){
-        stockValue.text = String(Int(stockValue.text!) ?? 1 + 1)
+                
+        guard let value = Int(stockValue.text ?? "0") else {return}
+        
+        let newValue = value + 1
+        stockValue.text = String(newValue)
         stockValue.reloadInputViews()
+        
     }
     
     @objc private func decrease(){
-        stockValue.text = String(Int(stockValue.text!) ?? 1 - 1)
+        
+        guard let value = Int(stockValue.text ?? "0") else {return}
+        
+        var newValue = value - 1
+        
+        if newValue < 0 {
+            newValue = 0
+        }
+        
+        stockValue.text = String(newValue)
         stockValue.reloadInputViews()
     }
     
@@ -97,23 +111,23 @@ class AddProductViewController: UIViewController {
         return image
     }()
     
-    private let buttonPlusP: UIButton = {
+    lazy private var buttonMinus: UIButton = {
         let buttonPlusP = UIButton()
-        buttonPlusP.setTitle("+", for: .normal)
+        buttonPlusP.setTitle("-", for: .normal)
         buttonPlusP.layer.cornerRadius = 8
         buttonPlusP.layer.masksToBounds = true
         buttonPlusP.backgroundColor = UIColor(named: "purple-700")
-        buttonPlusP.addTarget(AddProductViewController.self, action: #selector(increase), for: .touchUpInside)
+        buttonPlusP.addTarget(self, action: #selector(decrease), for: .touchUpInside)
         return buttonPlusP
     }()
     
-    private let buttonMinusP: UIButton = {
+    lazy private var buttonPlus: UIButton = {
         let buttonMinusP = UIButton()
-        buttonMinusP.setTitle("-", for: .normal)
+        buttonMinusP.setTitle("+", for: .normal)
         buttonMinusP.layer.cornerRadius = 8
         buttonMinusP.layer.masksToBounds = true
         buttonMinusP.backgroundColor = UIColor(named: "purple-700")
-        buttonMinusP.addTarget(AddProductViewController.self, action: #selector(decrease), for: .touchUpInside)
+        buttonMinusP.addTarget(self, action: #selector(increase), for: .touchUpInside)
         return buttonMinusP
     }()
     
@@ -126,6 +140,7 @@ class AddProductViewController: UIViewController {
         stockValue.keyboardType = UIKeyboardType.numberPad
         stockValue.layer.cornerRadius = 8
         stockValue.backgroundColor = UIColor(named: "purple-700")
+        
         //        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 15
         //                                                       , height: 20))
         //        stockValue.leftView = paddingView
@@ -195,9 +210,9 @@ class AddProductViewController: UIViewController {
         
         self.view.addSubview(imagePhoto)
         self.view.addSubview(buttonImage)
-        self.view.addSubview(buttonPlusP)
+        self.view.addSubview(buttonMinus)
         self.view.addSubview(stockValue)
-        self.view.addSubview(buttonMinusP)
+        self.view.addSubview(buttonPlus)
         self.view.addSubview(inputName)
         self.view.addSubview(inputDescription)
         self.view.addSubview(inputPrice)
@@ -251,24 +266,24 @@ class AddProductViewController: UIViewController {
             
         ])
         
-        buttonPlusP.translatesAutoresizingMaskIntoConstraints = false
+        buttonMinus.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonPlusP.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
-            buttonPlusP.trailingAnchor.constraint(equalTo: stockValue.leadingAnchor, constant: -8)
+            buttonMinus.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
+            buttonMinus.trailingAnchor.constraint(equalTo: stockValue.leadingAnchor, constant: -8)
             //            buttonPlusP.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
         ])
         
-        buttonMinusP.translatesAutoresizingMaskIntoConstraints = false
+        buttonPlus.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonMinusP.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
-            buttonMinusP.leadingAnchor.constraint(equalTo: stockValue.trailingAnchor, constant: 8)
+            buttonPlus.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
+            buttonPlus.leadingAnchor.constraint(equalTo: stockValue.trailingAnchor, constant: 8)
         ])
         
         inputName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             inputName.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
             inputName.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
-            inputName.topAnchor.constraint(equalTo: buttonPlusP.bottomAnchor, constant: 16),
+            inputName.topAnchor.constraint(equalTo: buttonMinus.bottomAnchor, constant: 16),
             inputName.heightAnchor.constraint(equalToConstant: 42),
         ])
         
