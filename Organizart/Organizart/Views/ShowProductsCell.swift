@@ -34,9 +34,10 @@ class ShowProductsCell: UITableViewCell {
     
     private var imageProduct: UIImageView = {
         let imageProduct = UIImageView()
-        imageProduct.contentMode = .scaleAspectFit
         imageProduct.backgroundColor = .red
-        imageProduct.image = UIImage(named: "cabeca")
+//        imageProduct.image = UIImage(named: "cabeca")
+        imageProduct.contentMode = .scaleAspectFit
+        imageProduct.clipsToBounds = true
         return imageProduct
     }()
     
@@ -45,6 +46,11 @@ class ShowProductsCell: UITableViewCell {
         self.selectionStyle = .none
         self.backgroundColor = .clear
         contentView.backgroundColor = .systemBackground
+        
+        contentView.addSubview(nameProductLabel)
+        contentView.addSubview(priceProductLabel)
+        contentView.addSubview(stockProductLabel)
+        contentView.addSubview(imageProduct)
         
     }
     
@@ -57,11 +63,6 @@ class ShowProductsCell: UITableViewCell {
         
         self.contentView.layer.cornerRadius = 8
         self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
-        
-        self.contentView.addSubview(nameProductLabel)
-        self.contentView.addSubview(priceProductLabel)
-        self.contentView.addSubview(stockProductLabel)
-        self.contentView.addSubview(imageProduct)
         
         
         imageProduct.translatesAutoresizingMaskIntoConstraints = false
@@ -91,10 +92,21 @@ class ShowProductsCell: UITableViewCell {
     }
     
     public func configure(name: String, price: String, stock: String, photo: String){
+        
         nameProductLabel.text = name
         priceProductLabel.text = "R$ " + price
         stockProductLabel.text = stock
-        imageProduct.image = UIImage(named: "cabeca")
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(photo).path
+        if FileManager.default.fileExists(atPath: filePath) {
+            let image = UIImage(contentsOfFile: filePath)!
+            imageProduct.image = image
+        }
+        
+//        imageProduct.image = new
+        
+//        imageProduct.image = UIImage(named: "cabeca")
     }
 
 }

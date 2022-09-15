@@ -23,10 +23,12 @@ class AddProductViewController: UIViewController {
         let stockV = stockValue.text!
         let priceV = inputPrice.text!
         
+
+        
         if let stock = Int(stockV), let price = Float(priceV) {
             let stockFlex = stock
             let priceFlex = price
-            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "\(inputName.text).png")
+            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: nameImage)
             labelError.isHidden = true
             dismiss(animated: true)
         } else {
@@ -68,6 +70,11 @@ class AddProductViewController: UIViewController {
         vc.allowsEditing = true
         present(vc, animated: true)
     }
+    
+    private var nameImage: String = {
+        var nameImage = ""
+        return nameImage
+    }()
     
     private let buttonImage: UIButton = {
         let buttonImage = UIButton()
@@ -219,8 +226,6 @@ class AddProductViewController: UIViewController {
         self.view.addSubview(inputPrice)
         self.view.addSubview(labelError)
         
-        
-        
         setupConstraints()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: self, action: #selector(back))
@@ -319,7 +324,11 @@ class AddProductViewController: UIViewController {
 
 extension AddProductViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
+            
+            let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            let imgName = imageURL?.lastPathComponent
             buttonImage.isHidden = true
 //            imagePhoto.image = image
             imagePhoto.isHidden = false
@@ -327,17 +336,18 @@ extension AddProductViewController: UIImagePickerControllerDelegate, UINavigatio
 //            let data = image.pngData()! as NSData
             
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = documentsURL.appendingPathComponent("\(inputName.text).png")
-            let pngImage = image.pngData()! as NSData
+            let fileURL = documentsURL.appendingPathComponent(imgName!)
+            let pngImage = image.jpegData(compressionQuality: 0.9)! as NSData
             do {
                 try pngImage.write(to: fileURL, options: .atomic)
             } catch {
                 print("error")
             }
             
-            let filePath = documentsURL.appendingPathComponent("\(inputName.text).png").path
+            let filePath = documentsURL.appendingPathComponent(imgName!).path
             if FileManager.default.fileExists(atPath: filePath) {
                 let new = UIImage(contentsOfFile: filePath)
+                nameImage = imgName!
                 imagePhoto.image = new
             }
             
