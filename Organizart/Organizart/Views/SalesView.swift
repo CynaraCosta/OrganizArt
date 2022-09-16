@@ -18,6 +18,7 @@ class SalesView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         self.addSubview(backgroundView)
         setupConstraints()
     }
@@ -34,6 +35,7 @@ class SalesView: UIView {
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor)
+
         ])
         
     }

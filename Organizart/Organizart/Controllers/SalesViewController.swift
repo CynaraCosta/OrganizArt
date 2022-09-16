@@ -25,14 +25,16 @@ class SalesViewController: UIViewController {
     func configureTableView() {
         setTableViewDelegates()
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
         tableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "SalesTableViewCell")
         
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 232),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -47,18 +49,36 @@ class SalesViewController: UIViewController {
 }
 
 extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return salesArray.count
-        // change to the .count sales array
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SalesTableViewCell") as! SalesTableViewCell
-        let sale = salesArray[indexPath.row]
+        let sale = salesArray[indexPath.section]
         cell.set(sale: sale)
+        cell.layer.cornerRadius = 8
+        cell.clipsToBounds = true
+
         
         return cell
     }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+        }
+        
+        // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+        }
     
     
 }
