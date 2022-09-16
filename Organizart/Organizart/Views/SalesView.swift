@@ -18,7 +18,8 @@ class SalesView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(backgroundView)
+
+        self.addSubview(backgroundView)
         setupConstraints()
     }
     
@@ -26,16 +27,17 @@ class SalesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConstraints() {
+    func setupConstraints(){
+        
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor)
-            ])
+
+        ])
+        
     }
-    
-    
     
 }

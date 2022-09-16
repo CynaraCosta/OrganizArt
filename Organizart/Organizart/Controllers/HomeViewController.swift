@@ -24,6 +24,15 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getAllProducts()
+        print(productsModel.count)
+//        for product in productsModel {
+//            deleteProduct(product: product)
+//        }
+
+    }
+    
     // CoreData - Products
     
     func getAllProducts(){
@@ -46,6 +55,7 @@ class HomeViewController: UIViewController {
         
         do {
             try context.save()
+            productsModel.append(newProduct)
             getAllProducts()
         }
         catch {

@@ -20,6 +20,9 @@
 		A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D328D0FBB8009CF192 /* ProductsView.swift */; };
 		A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D528D0FBC0009CF192 /* SalesView.swift */; };
 		A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817D928D100A4009CF192 /* HomeViewController.swift */; };
+		A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817DB28D15222009CF192 /* AddProductViewController.swift */; };
+		A44817E028D27D3E009CF192 /* ShowProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817DF28D27D3E009CF192 /* ShowProductsCell.swift */; };
+		A44817E228D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817E128D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift */; };
 		A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446AE28CF5288005E52B9 /* AppDelegate.swift */; };
 		A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B028CF5288005E52B9 /* SceneDelegate.swift */; };
 		A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B228CF5288005E52B9 /* ViewController.swift */; };
@@ -47,6 +50,9 @@
 		A44817D328D0FBB8009CF192 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		A44817D528D0FBC0009CF192 /* SalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesView.swift; sourceTree = "<group>"; };
 		A44817D928D100A4009CF192 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A44817DB28D15222009CF192 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		A44817DF28D27D3E009CF192 /* ShowProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProductsCell.swift; sourceTree = "<group>"; };
+		A44817E128D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductsViewController+TableViewDatasource+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		A4A446AB28CF5288005E52B9 /* Organizart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Organizart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A446AE28CF5288005E52B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A446B028CF5288005E52B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				A44817D128D0FB6B009CF192 /* SalesViewController.swift */,
 				A4A446B228CF5288005E52B9 /* ViewController.swift */,
 				A44817D928D100A4009CF192 /* HomeViewController.swift */,
+				A44817DB28D15222009CF192 /* AddProductViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -142,7 +149,11 @@
 				A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */,
 				A44817D328D0FBB8009CF192 /* ProductsView.swift */,
 				A44817D528D0FBC0009CF192 /* SalesView.swift */,
+
+				A44817DF28D27D3E009CF192 /* ShowProductsCell.swift */,
+
 				C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */,
+
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +168,7 @@
 				C1E42B2528D3A44B002E8459 /* ProductSold.swift */,
 				C1E42B1B28CF652D002E8459 /* CatalogProducts.swift */,
 				C1E42B1D28CF6B11002E8459 /* CatalogSales.swift */,
+				A44817E128D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,11 +247,13 @@
 				A44817C428D0AC52009CF192 /* Sale_CoreData+CoreDataClass.swift in Sources */,
 				A44817CA28D0AEFE009CF192 /* HomeView.swift in Sources */,
 				A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */,
+				A44817E028D27D3E009CF192 /* ShowProductsCell.swift in Sources */,
 				C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */,
 				A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */,
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
 				C1E42B2628D3A44B002E8459 /* ProductSold.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
+				A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
 				C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */,
@@ -252,6 +266,7 @@
 				A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */,
 				C1E42B1828CF63CC002E8459 /* Product.swift in Sources */,
 				A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */,
+				A44817E228D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift in Sources */,
 				A44817BF28D0A5FB009CF192 /* Produto+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +409,7 @@
 				DEVELOPMENT_TEAM = 9YF48LKAWG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Organizart/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Organizart deseja acessar suas fotos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -421,6 +437,7 @@
 				DEVELOPMENT_TEAM = 9YF48LKAWG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Organizart/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Organizart deseja acessar suas fotos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

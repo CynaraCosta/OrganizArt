@@ -11,5 +11,5 @@ import CoreData
 
 @objc(Produto_CoreData)
 public class Produto_CoreData: NSManagedObject {
-
+    
 }
