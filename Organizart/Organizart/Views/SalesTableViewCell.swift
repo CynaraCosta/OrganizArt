@@ -11,17 +11,18 @@ class SalesTableViewCell: UITableViewCell {
     
     private var orderIdLabel: UILabel = {
         var orderIdLabel = UILabel()
-        orderIdLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-        orderIdLabel.backgroundColor = .brown
-        orderIdLabel.textColor = UIColor(named: "purple-700")
+        orderIdLabel.font = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+//        orderIdLabel.backgroundColor = .brown
+        orderIdLabel.textColor = .label
         orderIdLabel.text = "#014"
         return orderIdLabel
     }()
     
     private var clientNameLabel: UILabel = {
         var clientNameLabel = UILabel()
-        clientNameLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        clientNameLabel.backgroundColor = .yellow
+        clientNameLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        clientNameLabel.textColor = .label
+//        clientNameLabel.backgroundColor = .yellow
         clientNameLabel.text = "Cynara Valéria de Oliveira Costa do Amaral Cavalcanti"
         clientNameLabel.numberOfLines = 0
         
@@ -31,8 +32,9 @@ class SalesTableViewCell: UITableViewCell {
     
     private var firstAmountLabel: UILabel = {
         var amountLabel = UILabel()
-        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        amountLabel.backgroundColor = .yellow
+        amountLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        amountLabel.textColor = UIColor(named: "purple-700")
+//        amountLabel.backgroundColor = .yellow
         amountLabel.text = "15"
         
         return amountLabel
@@ -41,8 +43,9 @@ class SalesTableViewCell: UITableViewCell {
     private var secondAmountLabel: UILabel = {
         var amountLabel = UILabel()
         amountLabel.isHidden = true
-        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        amountLabel.backgroundColor = .yellow
+        amountLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        amountLabel.textColor = UIColor(named: "purple-700")
+//        amountLabel.backgroundColor = .yellow
         amountLabel.text = "15"
         
         return amountLabel
@@ -51,8 +54,9 @@ class SalesTableViewCell: UITableViewCell {
     private var thirdAmountLabel: UILabel = {
         var amountLabel = UILabel()
         amountLabel.isHidden = true
-        amountLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        amountLabel.backgroundColor = .yellow
+        amountLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        amountLabel.textColor = UIColor(named: "purple-700")
+//        amountLabel.backgroundColor = .yellow
         amountLabel.text = "15"
         
         return amountLabel
@@ -60,8 +64,9 @@ class SalesTableViewCell: UITableViewCell {
     
     private var firstProductChosenLabel: UILabel = {
         var productChosenLabel = UILabel()
-        productChosenLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        productChosenLabel.backgroundColor = .cyan
+        productChosenLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        productChosenLabel.textColor = .label
+//        productChosenLabel.backgroundColor = .cyan
         productChosenLabel.text = "Bordado Santa Conceição"
         productChosenLabel.numberOfLines = 0
         
@@ -72,8 +77,9 @@ class SalesTableViewCell: UITableViewCell {
     private var secondProductChosenLabel: UILabel = {
         var productChosenLabel = UILabel()
         productChosenLabel.isHidden = true
-        productChosenLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        productChosenLabel.backgroundColor = .cyan
+        productChosenLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        productChosenLabel.textColor = .label
+//        productChosenLabel.backgroundColor = .cyan
         productChosenLabel.text = "Bolsa Tote Canário"
         productChosenLabel.numberOfLines = 0
         
@@ -84,8 +90,9 @@ class SalesTableViewCell: UITableViewCell {
     private var thirdProductChosenLabel: UILabel = {
         var productChosenLabel = UILabel()
         productChosenLabel.isHidden = true
-        productChosenLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        productChosenLabel.backgroundColor = .cyan
+        productChosenLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        productChosenLabel.textColor = .label
+//        productChosenLabel.backgroundColor = .cyan
         productChosenLabel.text = "Cabeça Feminina Neguinha e Nanai GG Personalizada"
         productChosenLabel.numberOfLines = 0
         
@@ -95,8 +102,9 @@ class SalesTableViewCell: UITableViewCell {
     
     private var totalPriceLabel: UILabel = {
         var totalPriceLabel = UILabel()
-        totalPriceLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-        totalPriceLabel.backgroundColor = .darkGray
+        totalPriceLabel.font = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+        totalPriceLabel.textColor = .label
+//        totalPriceLabel.backgroundColor = .darkGray
         totalPriceLabel.text = "R$500,00"
         
         return totalPriceLabel
@@ -106,7 +114,8 @@ class SalesTableViewCell: UITableViewCell {
     private var saleFormatLabel: UILabel = {
         var saleFormatLabel = UILabel()
         saleFormatLabel.font = UIFont.systemFont(ofSize: 11.0, weight: .regular)
-        saleFormatLabel.backgroundColor = .yellow
+        saleFormatLabel.textColor = .label
+//        saleFormatLabel.backgroundColor = .yellow
         saleFormatLabel.text = "Feira Bom Jesus"
         saleFormatLabel.numberOfLines = 0
         saleFormatLabel.textAlignment = .center
@@ -118,7 +127,7 @@ class SalesTableViewCell: UITableViewCell {
     
     private var tagView: UIView = {
         let tagView = UIView()
-        tagView.backgroundColor = .green
+        tagView.backgroundColor = UIColor(named: "purple-100")
         tagView.layer.cornerRadius = 6
         tagView.layer.masksToBounds = true
         
@@ -128,7 +137,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackView: UIStackView = {
         var stack = UIStackView()
-        stack.backgroundColor = .purple
+//        stack.backgroundColor = .purple
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.alignment = .fill
@@ -140,7 +149,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackViewInfo: UIStackView = {
         var stackInfo = UIStackView()
-        stackInfo.backgroundColor = .blue
+//        stackInfo.backgroundColor = .blue
         stackInfo.axis = .vertical
         stackInfo.distribution = .fill
         stackInfo.alignment = .leading
@@ -153,7 +162,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackViewPrice: UIStackView = {
         var stackPrice = UIStackView()
-        stackPrice.backgroundColor = .black
+//        stackPrice.backgroundColor = .black
         stackPrice.axis = .vertical
         stackPrice.distribution = .fill
         stackPrice.alignment = .trailing
@@ -165,7 +174,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackViewFirstAmount: UIStackView = {
         var stackAmount = UIStackView()
-        stackAmount.backgroundColor = .purple
+//        stackAmount.backgroundColor = .purple
         stackAmount.axis = .horizontal
         stackAmount.distribution = .fill
         stackAmount.alignment = .leading
@@ -176,7 +185,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackViewSecondAmount: UIStackView = {
         var stackAmount = UIStackView()
-        stackAmount.backgroundColor = .purple
+//        stackAmount.backgroundColor = .purple
         stackAmount.axis = .horizontal
         stackAmount.distribution = .fill
         stackAmount.alignment = .leading
@@ -187,7 +196,7 @@ class SalesTableViewCell: UITableViewCell {
     
     var stackViewThirdAmount: UIStackView = {
         var stackAmount = UIStackView()
-        stackAmount.backgroundColor = .purple
+//        stackAmount.backgroundColor = .purple
         stackAmount.axis = .horizontal
         stackAmount.distribution = .fill
         stackAmount.alignment = .leading
@@ -244,7 +253,7 @@ class SalesTableViewCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 11.49),
             
-            stackViewInfo.widthAnchor.constraint(equalToConstant: 216),
+            stackViewInfo.widthAnchor.constraint(equalToConstant: 200),
             
             saleFormatLabel.topAnchor.constraint(equalTo: tagView.topAnchor, constant: 2),
             saleFormatLabel.bottomAnchor.constraint(equalTo: tagView.bottomAnchor, constant: -2),
@@ -260,7 +269,7 @@ class SalesTableViewCell: UITableViewCell {
     
     
     func set(sale: Sale) {
-        orderIdLabel.text = String(sale.id)
+        orderIdLabel.text = "#\(String(sale.id))"
         clientNameLabel.text = sale.clientName
         firstAmountLabel.text = String(sale.productsChosen[0].amount)
         firstProductChosenLabel.text = sale.productsChosen[0].product.title
@@ -276,7 +285,7 @@ class SalesTableViewCell: UITableViewCell {
             thirdProductChosenLabel.text = sale.productsChosen[2].product.title
         }
         
-        totalPriceLabel.text = String(sale.totalPrice)
+        totalPriceLabel.text = "R$\(String(sale.totalPrice))"
         saleFormatLabel.text = sale.saleFormat
 
         
