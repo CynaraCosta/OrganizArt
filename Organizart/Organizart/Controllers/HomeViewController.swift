@@ -15,12 +15,24 @@ class HomeViewController: UIViewController {
     
     var productsModel = [Produto_CoreData]()
     
+    @objc private func clickedCardI(){
+        let rootVC = InvoicingDetailsViewController()
+        rootVC.view.backgroundColor = .systemBackground
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
     let HomeView_ = HomeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllProducts()
         self.view = HomeView_
+        let cardI = HomeView_.card
+        
+        cardI.addTarget(self, action: #selector(clickedCardI), for: .touchUpInside)
+        
         // Do any additional setup after loading the view.
     }
     
