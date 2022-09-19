@@ -34,7 +34,6 @@ class ShowProductsCell: UITableViewCell {
     
     private var imageProduct: UIImageView = {
         let imageProduct = UIImageView()
-        imageProduct.backgroundColor = .red
 //        imageProduct.image = UIImage(named: "cabeca")
         imageProduct.contentMode = .scaleAspectFit
         imageProduct.clipsToBounds = true
@@ -52,23 +51,24 @@ class ShowProductsCell: UITableViewCell {
         contentView.addSubview(stockProductLabel)
         contentView.addSubview(imageProduct)
         
+        setupConstraints()
+        
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.contentView.layer.cornerRadius = 8
-        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
-        
+    func setupConstraints(){
         
         imageProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageProduct.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageProduct.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            imageProduct.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 12),
+            imageProduct.widthAnchor.constraint(equalToConstant: 48)
+//            imageProduct.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
         ])
         
         nameProductLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +89,17 @@ class ShowProductsCell: UITableViewCell {
             stockProductLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40)
         ])
         
+        
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
+        
+        print(self.imageProduct.frame)
     }
     
     public func configure(name: String, price: String, stock: String, photo: String){
@@ -96,6 +107,8 @@ class ShowProductsCell: UITableViewCell {
         nameProductLabel.text = name
         priceProductLabel.text = "R$ " + price
         stockProductLabel.text = stock
+        
+        print("jesus")
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(photo).path

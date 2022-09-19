@@ -227,6 +227,7 @@ class AddProductViewController: UIViewController {
         self.view.addSubview(labelError)
         
         setupConstraints()
+
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "purple-700")
@@ -261,6 +262,7 @@ class AddProductViewController: UIViewController {
             imagePhoto.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.5),
             imagePhoto.heightAnchor.constraint(equalToConstant: self.view.frame.height * 0.3)
         ])
+        
         
         
         stockValue.translatesAutoresizingMaskIntoConstraints = false
