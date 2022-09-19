@@ -21,7 +21,8 @@ extension ProductsViewController: UITableViewDataSource {
         
         Home.getAllProducts()
 //        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: Home.productsModel[indexPath.row].picture!)
-        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: "cabeca")
+        
+        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: Home.productsModel[indexPath.row].picture!)
         
         return cell
     }
