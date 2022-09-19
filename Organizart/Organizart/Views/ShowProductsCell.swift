@@ -34,9 +34,9 @@ class ShowProductsCell: UITableViewCell {
     
     private var imageProduct: UIImageView = {
         let imageProduct = UIImageView()
+//        imageProduct.image = UIImage(named: "cabeca")
         imageProduct.contentMode = .scaleAspectFit
-        imageProduct.backgroundColor = .red
-        imageProduct.image = UIImage(named: "cabeca")
+        imageProduct.clipsToBounds = true
         return imageProduct
     }()
     
@@ -46,28 +46,29 @@ class ShowProductsCell: UITableViewCell {
         self.backgroundColor = .clear
         contentView.backgroundColor = .systemBackground
         
+        contentView.addSubview(nameProductLabel)
+        contentView.addSubview(priceProductLabel)
+        contentView.addSubview(stockProductLabel)
+        contentView.addSubview(imageProduct)
+        
+        setupConstraints()
+        
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.contentView.layer.cornerRadius = 8
-        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
-        
-        self.contentView.addSubview(nameProductLabel)
-        self.contentView.addSubview(priceProductLabel)
-        self.contentView.addSubview(stockProductLabel)
-        self.contentView.addSubview(imageProduct)
-        
+    func setupConstraints(){
         
         imageProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageProduct.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageProduct.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            imageProduct.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 12),
+            imageProduct.widthAnchor.constraint(equalToConstant: 48)
+//            imageProduct.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
         ])
         
         nameProductLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,13 +89,37 @@ class ShowProductsCell: UITableViewCell {
             stockProductLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40)
         ])
         
+        
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
+        
+        print(self.imageProduct.frame)
     }
     
     public func configure(name: String, price: String, stock: String, photo: String){
+        
         nameProductLabel.text = name
         priceProductLabel.text = "R$ " + price
         stockProductLabel.text = stock
-        imageProduct.image = UIImage(named: "cabeca")
+        
+        print("jesus")
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(photo).path
+        if FileManager.default.fileExists(atPath: filePath) {
+            let image = UIImage(contentsOfFile: filePath)!
+            imageProduct.image = image
+        }
+        
+//        imageProduct.image = new
+        
+//        imageProduct.image = UIImage(named: "cabeca")
     }
 
 }
