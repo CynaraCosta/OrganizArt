@@ -11,16 +11,6 @@ class HomeView: UIView {
     
     let card = CardViewInvoicing()
     
-    private let cardView: UIView = {
-        let cardView = UIView()
-        let teste = UILabel()
-        teste.text = "teste"
-        cardView.addSubview(teste)
-        cardView.backgroundColor = .green
-        cardView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        return cardView
-    }()
-    
     private let backgroundView: UIImageView = {
         let backgroundView = UIImageView()
         backgroundView.image = UIImage(named: "background")
@@ -58,6 +48,7 @@ class HomeView: UIView {
         addSubview(invoicingLabel)
         addSubview(card)
         addSubview(topProduct)
+                
         setupConstraints()
         
     }

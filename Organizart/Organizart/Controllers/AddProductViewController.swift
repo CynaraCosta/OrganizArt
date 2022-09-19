@@ -269,7 +269,8 @@ class AddProductViewController: UIViewController {
         NSLayoutConstraint.activate([
             stockValue.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
             stockValue.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            stockValue.widthAnchor.constraint(equalToConstant: 42),
+//            stockValue.widthAnchor.constraint(equalToConstant: 42),
+            stockValue.widthAnchor.constraint(equalTo: buttonMinus.widthAnchor),
             stockValue.bottomAnchor.constraint(equalTo: inputName.topAnchor, constant: -16)
             
         ])
