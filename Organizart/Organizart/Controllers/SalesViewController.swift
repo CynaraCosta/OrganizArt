@@ -26,6 +26,9 @@ class SalesViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.allowsSelection = true
+        tableView.isUserInteractionEnabled = true
         tableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "SalesTableViewCell")
         
         
@@ -44,16 +47,15 @@ class SalesViewController: UIViewController {
 
     }
     
-    @objc private func didTapCell() {
-        let rootVC = SaleDetailsViewController()
-        rootVC.view.backgroundColor = UIColor(named: "purple-80")
-        rootVC.title = "Detalhes da venda"
-        let navVC = UINavigationController(rootViewController: rootVC)
-        navVC.modalPresentationStyle = .fullScreen
-        
-        present(navVC, animated: true)
-    }
-    
+//    @objc private func didTapCell() {
+//        let rootVC = SaleDetailsViewController(productsArray: salesArray[indexPath.row])
+//        rootVC.view.backgroundColor = UIColor(named: "purple-80")
+//        rootVC.title = "Detalhes da venda"
+//        let navVC = UINavigationController(rootViewController: rootVC)
+//        navVC.modalPresentationStyle = .fullScreen
+//        present(navVC, animated: true)
+//    }
+//
 
 }
 
@@ -91,7 +93,13 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didTapCell()
+        let products = salesArray[indexPath.row].productsChosen
+        let detailViewController = SaleDetailsViewController(productsArray: products)
+        navigationController?.pushViewController(detailViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+
+//        didTapCell()
+        
     }
     
     
