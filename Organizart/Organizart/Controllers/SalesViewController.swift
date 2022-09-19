@@ -16,7 +16,6 @@ class SalesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         salesArray = Sale.logSales()
-        // print(salesArray)
         self.view = salesView
         self.view.addSubview(tableView)
         configureTableView()
@@ -32,7 +31,7 @@ class SalesViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 232),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -43,6 +42,16 @@ class SalesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+    }
+    
+    @objc private func didTapCell() {
+        let rootVC = SaleDetailsViewController()
+        rootVC.view.backgroundColor = UIColor(named: "purple-80")
+        rootVC.title = "Detalhes da venda"
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        
+        present(navVC, animated: true)
     }
     
 
@@ -70,7 +79,7 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 2
         }
         
         // Make the background color show through
@@ -78,7 +87,14 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
-        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didTapCell()
+    }
+    
+    
     
     
 }

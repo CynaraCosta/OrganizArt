@@ -34,6 +34,8 @@
 		C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1D28CF6B11002E8459 /* CatalogSales.swift */; };
 		C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */; };
 		C1E42B2628D3A44B002E8459 /* ProductSold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B2528D3A44B002E8459 /* ProductSold.swift */; };
+		C1E42B2A28D4A5EE002E8459 /* CardViewSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B2928D4A5EE002E8459 /* CardViewSale.swift */; };
+		C1E42B2C28D4B72F002E8459 /* SaleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B2B28D4B72F002E8459 /* SaleDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		C1E42B1D28CF6B11002E8459 /* CatalogSales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogSales.swift; sourceTree = "<group>"; };
 		C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTableViewCell.swift; sourceTree = "<group>"; };
 		C1E42B2528D3A44B002E8459 /* ProductSold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSold.swift; sourceTree = "<group>"; };
+		C1E42B2928D4A5EE002E8459 /* CardViewSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewSale.swift; sourceTree = "<group>"; };
+		C1E42B2B28D4B72F002E8459 /* SaleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 				A4A446B228CF5288005E52B9 /* ViewController.swift */,
 				A44817D928D100A4009CF192 /* HomeViewController.swift */,
 				A44817DB28D15222009CF192 /* AddProductViewController.swift */,
+				C1E42B2B28D4B72F002E8459 /* SaleDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,14 +151,12 @@
 			isa = PBXGroup;
 			children = (
 				A44817C928D0AEFE009CF192 /* HomeView.swift */,
+				C1E42B2928D4A5EE002E8459 /* CardViewSale.swift */,
 				A44817CB28D0B32A009CF192 /* CardViewInvoicing.swift */,
 				A44817D328D0FBB8009CF192 /* ProductsView.swift */,
 				A44817D528D0FBC0009CF192 /* SalesView.swift */,
-
 				A44817DF28D27D3E009CF192 /* ShowProductsCell.swift */,
-
 				C1E42B2328D2094C002E8459 /* SalesTableViewCell.swift */,
-
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
+				C1E42B2A28D4A5EE002E8459 /* CardViewSale.swift in Sources */,
 				C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
@@ -264,6 +268,7 @@
 				C1E42B1A28CF6499002E8459 /* Sale.swift in Sources */,
 				A44817D228D0FB6B009CF192 /* SalesViewController.swift in Sources */,
 				A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */,
+				C1E42B2C28D4B72F002E8459 /* SaleDetailsViewController.swift in Sources */,
 				C1E42B1828CF63CC002E8459 /* Product.swift in Sources */,
 				A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */,
 				A44817E228D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift in Sources */,
