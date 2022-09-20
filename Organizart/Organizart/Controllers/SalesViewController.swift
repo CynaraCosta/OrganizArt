@@ -32,9 +32,10 @@ class SalesViewController: UIViewController {
         tableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "SalesTableViewCell")
         
         
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 188),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -60,43 +61,43 @@ class SalesViewController: UIViewController {
 }
 
 extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return salesArray.count
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return salesArray.count
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return salesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SalesTableViewCell") as! SalesTableViewCell
-        let sale = salesArray[indexPath.section]
+        let sale = salesArray[indexPath.row]
         cell.set(sale: sale)
         cell.layer.cornerRadius = 8
-        cell.clipsToBounds = true
 
         
         return cell
     }
     
-    // Set the spacing between sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 2
-        }
-        
-        // Make the background color show through
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-        
-    }
+//    // Set the spacing between sections
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 2
+//        }
+//
+//        // Make the background color show through
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.clear
+//        return headerView
+//
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let products = salesArray[indexPath.row].productsChosen
-        let detailViewController = SaleDetailsViewController(productsArray: products)
-        navigationController?.pushViewController(detailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        let sale = salesArray[indexPath.row]
+        let vc = SaleDetailsViewController()
+        vc.sale = sale
+        present(vc, animated: true, completion: nil)
 
 //        didTapCell()
         

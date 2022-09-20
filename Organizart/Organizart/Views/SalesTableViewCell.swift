@@ -207,7 +207,11 @@ class SalesTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "SalesTableViewCell")
+        self.selectionStyle = .none
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .systemBackground
     
+
         hierarchy()
         setConstraints()
     }
@@ -288,6 +292,14 @@ class SalesTableViewCell: UITableViewCell {
         totalPriceLabel.text = "R$\(String(sale.totalPrice))"
         saleFormatLabel.text = sale.saleFormat
 
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         
     }
     
