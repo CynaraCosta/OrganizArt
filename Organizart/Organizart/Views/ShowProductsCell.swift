@@ -99,7 +99,6 @@ class ShowProductsCell: UITableViewCell {
         self.contentView.layer.cornerRadius = 8
         self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         
-        print(self.imageProduct.frame)
     }
     
     public func configure(name: String, price: String, stock: String, photo: String){
@@ -108,7 +107,6 @@ class ShowProductsCell: UITableViewCell {
         priceProductLabel.text = "R$ " + price
         stockProductLabel.text = stock
         
-        print("jesus")
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(photo).path

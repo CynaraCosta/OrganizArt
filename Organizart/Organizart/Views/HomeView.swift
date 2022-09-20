@@ -51,6 +51,8 @@ class HomeView: UIView {
                 
         setupConstraints()
         
+//        card.backgroundColor = .systemBackground
+        
     }
     
     required init?(coder: NSCoder) {
