@@ -9,16 +9,16 @@ import UIKit
 
 class SaleDetailsView: UIView {
     
-    private let backgroundView: UIImageView = {
-        let backgroundView = UIImageView()
-        backgroundView.image = UIImage(named: "background")
-        backgroundView.contentMode = .scaleAspectFill
-        
-        return backgroundView
-    }()
+//    private let backgroundView: UIImageView = {
+//        let backgroundView = UIImageView()
+//        backgroundView.image = UIImage(named: "background")
+//        backgroundView.contentMode = .scaleAspectFill
+//
+//        return backgroundView
+//    }()
+//
     
-    
-    private var orderIdLabel: UILabel = {
+    public var orderIdLabel: UILabel = {
         var orderIdLabel = UILabel()
         orderIdLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
         orderIdLabel.backgroundColor = .brown
@@ -30,7 +30,7 @@ class SaleDetailsView: UIView {
         
     }()
     
-    private var dateLabel: UILabel = {
+    public var dateLabel: UILabel = {
         var date = UILabel()
         date.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         date.backgroundColor = .systemRed
@@ -40,7 +40,7 @@ class SaleDetailsView: UIView {
         
     }()
     
-    private var clientNameLabel: UILabel = {
+    public var clientNameLabel: UILabel = {
         var name = UILabel()
         name.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         name.numberOfLines = 0
@@ -52,7 +52,7 @@ class SaleDetailsView: UIView {
         
     }()
     
-    private var saleFormatLabel: UILabel = {
+    public var saleFormatLabel: UILabel = {
         var saleFormatLabel = UILabel()
         saleFormatLabel.font = UIFont.systemFont(ofSize: 11.0, weight: .regular)
         saleFormatLabel.textColor = .label
@@ -66,7 +66,7 @@ class SaleDetailsView: UIView {
         
     }()
     
-    private var tagView: UIView = {
+    public var tagView: UIView = {
         let tagView = UIView()
         tagView.backgroundColor = UIColor(named: "purple-100")
         tagView.layer.cornerRadius = 6
@@ -104,10 +104,11 @@ class SaleDetailsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(backgroundView)
+        self.backgroundColor = .systemBackground
         
         hierarchy()
         setupConstraints()
+//        setupInfo()
     }
     
     required init?(coder: NSCoder) {
