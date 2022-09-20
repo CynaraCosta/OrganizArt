@@ -207,20 +207,19 @@ class SaleDetailsViewController: UIViewController {
         setTableViewDelegates()
         productsChosenTableView.rowHeight = UITableView.automaticDimension
         productsChosenTableView.separatorStyle = .none
-//        productsChosenTableView.backgroundColor = .clear
-        productsChosenTableView.backgroundColor = .brown
+        productsChosenTableView.backgroundColor = .clear
         productsChosenTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         productsChosenTableView.allowsSelection = true
         productsChosenTableView.isUserInteractionEnabled = true
-        productsChosenTableView.register(SalesTableViewCell.self, forCellReuseIdentifier: "ProductsChosenTableViewCell")
+        productsChosenTableView.register(ProductsChosenTableViewCell.self, forCellReuseIdentifier: "ProductsChosenTableViewCell")
         
         
         productsChosenTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            productsChosenTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            productsChosenTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 136),
             productsChosenTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             productsChosenTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-//            productsChosenTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            productsChosenTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -450)
         ])
     }
     
@@ -251,10 +250,8 @@ extension SaleDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsChosenTableViewCell") as? ProductsChosenTableViewCell else {return UITableViewCell()}
         let products = sale.productsChosen[indexPath.row]
-        print(products)
         cell.set(product: products)
         cell.layer.cornerRadius = 8
-        cell.clipsToBounds = true
 
         
         return cell
