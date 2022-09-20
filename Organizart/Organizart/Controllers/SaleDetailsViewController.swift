@@ -11,6 +11,10 @@ class SaleDetailsViewController: UIViewController {
     
     public var sale: Sale = Sale(clientName: "", saleFormat: "", productsChosen: [], id: 0, totalPrice: 0)
     
+    @objc private func back(){
+            dismiss(animated: true)
+        }
+    
     public var orderIdLabel: UILabel = {
         var orderIdLabel = UILabel()
         orderIdLabel.font = UIFont.systemFont(ofSize: 22.0, weight: .bold)
@@ -79,6 +83,18 @@ class SaleDetailsViewController: UIViewController {
         
     }()
     
+    private var buttonDelete: UIButton = {
+            let buttonDelete = UIButton()
+            buttonDelete.setTitle("Excluir venda", for: .normal)
+            buttonDelete.titleLabel?.textColor = .label
+            buttonDelete.backgroundColor = UIColor(named: "red-700")
+            buttonDelete.layer.cornerRadius = 8
+            buttonDelete.translatesAutoresizingMaskIntoConstraints = false
+
+            return buttonDelete
+        
+        }()
+    
     public let tagView: UIView = {
         let tagView = UIView()
         tagView.backgroundColor = UIColor(named: "purple-100")
@@ -134,6 +150,7 @@ class SaleDetailsViewController: UIViewController {
         self.view.addSubview(firstStackView)
         self.view.addSubview(secondStackView)
         self.view.addSubview(priceStackView)
+        self.view.addSubview(buttonDelete)
         
         firstStackView.addArrangedSubview(orderIdLabel)
         firstStackView.addArrangedSubview(dateLabel)
@@ -150,12 +167,12 @@ class SaleDetailsViewController: UIViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            firstStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 32),
+            firstStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 96),
             firstStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             firstStackView.widthAnchor.constraint(equalToConstant: 326),
 
             
-            secondStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 64),
+            secondStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 128),
             secondStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             secondStackView.widthAnchor.constraint(equalToConstant: 326),
             
@@ -170,6 +187,11 @@ class SaleDetailsViewController: UIViewController {
             priceStackView.topAnchor.constraint(equalTo: productsChosenTableView.bottomAnchor, constant: 24),
             priceStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             priceStackView.widthAnchor.constraint(equalToConstant: 326),
+            
+            buttonDelete.topAnchor.constraint(equalTo: priceStackView.bottomAnchor, constant: 32),
+            buttonDelete.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
+            buttonDelete.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+
         
         
         ])
@@ -180,15 +202,14 @@ class SaleDetailsViewController: UIViewController {
     let detailsView = SaleDetailsView()
     var productsChosenTableView = UITableView()
     
-    
-    @objc private func back(){
-        dismiss(animated: true)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(productsChosenTableView)
         self.view.backgroundColor = .systemBackground
+        
+        self.view.insetsLayoutMarginsFromSafeArea = true
+        
         hierarchy()
         setupConstraints()
         configureTableView()
@@ -198,9 +219,29 @@ class SaleDetailsViewController: UIViewController {
         title = "Detalhe de venda"
         
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: self, action: #selector(back))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "purple-700")
-        
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 32, width: view.frame.size.width, height: 44))
+                navBar.backgroundColor = .clear
+                
+                view.addSubview(navBar)
+
+            let navItem = UINavigationItem(title: "#\(sale.id)")
+                
+                let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
+                let backItem2 = UIBarButtonItem(title: "Voltar", style: .done, target: nil, action: #selector(back))
+
+                let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(back))
+
+                
+                editItem.tintColor = UIColor(named: "purple-700")
+                backItem.tintColor = UIColor(named: "purple-700")
+                backItem2.tintColor = UIColor(named: "purple-700")
+                
+                navItem.rightBarButtonItem = editItem
+                navItem.leftBarButtonItems = [backItem, backItem2]
+
+                navBar.setItems([navItem], animated: false)
+              
+
     }
     
     func configureTableView() {
@@ -216,7 +257,7 @@ class SaleDetailsViewController: UIViewController {
         
         productsChosenTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            productsChosenTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 136),
+            productsChosenTableView.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 24),
             productsChosenTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             productsChosenTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             productsChosenTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -450)

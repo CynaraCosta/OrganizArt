@@ -97,6 +97,7 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
         let sale = salesArray[indexPath.row]
         let vc = SaleDetailsViewController()
         vc.sale = sale
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
 
 //        didTapCell()
