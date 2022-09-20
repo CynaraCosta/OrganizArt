@@ -37,7 +37,11 @@ extension ProductsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // setar
+        let product = Home.productsModel[indexPath.row]
+        let vc = ProductView()
+        vc.product = product
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
 }

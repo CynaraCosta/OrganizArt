@@ -7,10 +7,18 @@
 
 import UIKit
 
-class ProductView: UIView {
+class ProductView: UIViewController {
+    
+    public var product = Produto_CoreData()
+    
+    @objc private func back(){
+        dismiss(animated: true)
+        // tem que colocar o pop up aqui
+    }
+    
     
     @objc private func increase(){
-                
+        
         guard let value = Int(stockValue.text ?? "0") else {return}
         
         let newValue = value + 1
@@ -32,7 +40,7 @@ class ProductView: UIView {
         stockValue.text = String(newValue)
         stockValue.reloadInputViews()
     }
-
+    
     private var imageProduct: UIImageView = {
         let imageProduct = UIImageView()
         imageProduct.contentMode = .scaleAspectFit
@@ -73,10 +81,6 @@ class ProductView: UIView {
         stockValue.layer.cornerRadius = 8
         stockValue.backgroundColor = UIColor(named: "purple-700")
         
-        //        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 15
-        //                                                       , height: 20))
-        //        stockValue.leftView = paddingView
-        //        stockValue.leftViewMode = .always
         
         return stockValue
     }()
@@ -132,7 +136,7 @@ class ProductView: UIView {
         
         realLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            realLabel.trailingAnchor.constraint(equalTo: cardValue.trailingAnchor, constant: -32),
+            //            realLabel.trailingAnchor.constraint(equalTo: cardValue.trailingAnchor, constant: -32),
             realLabel.trailingAnchor.constraint(equalTo: cardValue.trailingAnchor, constant: -64),
             realLabel.centerYAnchor.constraint(equalTo: cardValue.centerYAnchor)
         ])
@@ -140,42 +144,82 @@ class ProductView: UIView {
         return cardValue
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-//        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .systemBackground
-        self.addSubview(imageProduct)
-        self.addSubview(stockValue)
-        self.addSubview(buttonMinus)
-        self.addSubview(buttonPlus)
-        self.addSubview(titleProduct)
-        self.addSubview(descriptionProduct)
-        self.addSubview(cardValue)
-        self.addSubview(buttonDelete)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
+        self.view.addSubview(imageProduct)
+        self.view.addSubview(stockValue)
+        self.view.addSubview(buttonMinus)
+        self.view.addSubview(buttonPlus)
+        self.view.addSubview(titleProduct)
+        self.view.addSubview(descriptionProduct)
+        self.view.addSubview(cardValue)
+        self.view.addSubview(buttonDelete)
         
+        self.view.insetsLayoutMarginsFromSafeArea = true
+        
+        
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 32, width: view.frame.size.width, height: 44))
+        navBar.backgroundColor = .clear
+        
+        view.addSubview(navBar)
+
+        let navItem = UINavigationItem(title: product.title)
+        
+        let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
+        let backItem2 = UIBarButtonItem(title: "Voltar", style: .done, target: nil, action: #selector(back))
+
+        let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(back))
+
+        
+        editItem.tintColor = UIColor(named: "purple-700")
+        backItem.tintColor = UIColor(named: "purple-700")
+        backItem2.tintColor = UIColor(named: "purple-700")
+        
+        navItem.rightBarButtonItem = editItem
+        navItem.leftBarButtonItems = [backItem, backItem2]
+
+        navBar.setItems([navItem], animated: false)
+      
+        
+        
+        setupConfigProduct()
         setupConstraints()
-        
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setupConfigProduct(){
+        stockValue.text = String(product.stock)
+        titleProduct.text = product.title
+        descriptionProduct.text = product.description_
+        
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(product.picture!).path
+        if FileManager.default.fileExists(atPath: filePath) {
+            let image = UIImage(contentsOfFile: filePath)!
+            imageProduct.image = image
+            
+        }
+        
     }
     
     func setupConstraints() {
         
         imageProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            imageProduct.topAnchor.constraint(equalTo: self.topAnchor, constant: 32),
-            imageProduct.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 64),
-            imageProduct.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            imageProduct.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
+            imageProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
+            imageProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            imageProduct.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 76),
+            imageProduct.widthAnchor.constraint(equalToConstant: 326),
+            imageProduct.heightAnchor.constraint(equalToConstant: 326)
+            
             
         ])
         
         stockValue.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stockValue.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            stockValue.widthAnchor.constraint(equalToConstant: 42),
+            stockValue.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            //            stockValue.widthAnchor.constraint(equalToConstant: 42),
             stockValue.widthAnchor.constraint(equalTo: buttonMinus.widthAnchor),
             stockValue.heightAnchor.constraint(equalTo: buttonMinus.heightAnchor),
             stockValue.topAnchor.constraint(equalTo: imageProduct.bottomAnchor, constant: -16)
@@ -196,45 +240,33 @@ class ProductView: UIView {
         titleProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleProduct.topAnchor.constraint(equalTo: stockValue.bottomAnchor, constant: 32),
-            titleProduct.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32)
+            titleProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32)
         ])
         
         descriptionProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionProduct.topAnchor.constraint(equalTo: titleProduct.bottomAnchor, constant: 8),
-            descriptionProduct.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            descriptionProduct.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32)
+            descriptionProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
+            descriptionProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32)
         ])
         
         cardValue.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardValue.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
+            cardValue.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
             cardValue.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 32),
-            cardValue.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 32)
+            cardValue.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 32)
         ])
         
         buttonDelete.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             buttonDelete.topAnchor.constraint(equalTo: cardValue.bottomAnchor, constant: 32),
-            buttonDelete.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            buttonDelete.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-//            buttonDelete.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -16)
+            buttonDelete.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
+            buttonDelete.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            //            buttonDelete.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -16)
         ])
         
     }
-
+    
 }
 
-#if DEBUG
-import SwiftUI
 
-@available(iOS 13, *)
-struct ProductView_preview: PreviewProvider {
-    static var previews: some View {
-        // view controller using programmatic UI
-        Group {
-            ProductView().showPreview().previewLayout(PreviewLayout.fixed(width: 326, height: 139))
-        }
-    }
-}
-#endif
