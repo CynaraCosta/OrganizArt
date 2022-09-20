@@ -10,10 +10,17 @@ import UIKit
 class ProductView: UIViewController {
     
     public var product = Produto_CoreData()
+    private let HomeVC = HomeViewController()
     
     @objc private func back(){
         dismiss(animated: true)
         // tem que colocar o pop up aqui
+    }
+    
+    @objc private func deleteProduct(){
+        HomeVC.getAllProducts()
+        HomeVC.deleteProduct(product: product)
+        dismiss(animated: true)
     }
     
     
@@ -106,8 +113,14 @@ class ProductView: UIViewController {
         let buttonDelete = UIButton()
         buttonDelete.setTitle("Excluir produto", for: .normal)
         buttonDelete.titleLabel?.textColor = .label
-        buttonDelete.backgroundColor = UIColor(named: "red-700")
+//        buttonDelete.backgroundColor = UIColor(named: "red-700")
         buttonDelete.layer.cornerRadius = 8
+        buttonDelete.addTarget(self, action: #selector(deleteProduct), for: .touchUpInside)
+        if (buttonDelete.isSelected) {
+            buttonDelete.backgroundColor = .blue
+        } else {
+            buttonDelete.backgroundColor = UIColor(named: "red-700")
+        }
         return buttonDelete
     }()
     
