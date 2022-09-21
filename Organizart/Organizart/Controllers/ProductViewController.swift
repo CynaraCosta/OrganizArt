@@ -31,6 +31,7 @@ class ProductView: UIViewController {
         let newValue = value + 1
         stockValue.text = String(newValue)
         stockValue.reloadInputViews()
+        HomeVC.updateStockProduct(product: product, newStock: Int32(newValue))
         
     }
     
@@ -46,6 +47,7 @@ class ProductView: UIViewController {
         
         stockValue.text = String(newValue)
         stockValue.reloadInputViews()
+        HomeVC.updateStockProduct(product: product, newStock: Int32(newValue))
     }
     
     private var imageProduct: UIImageView = {

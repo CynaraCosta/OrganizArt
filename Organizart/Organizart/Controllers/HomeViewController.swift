@@ -88,9 +88,15 @@ class HomeViewController: UIViewController {
         
     }
     
-//    func updateProduct(titleProduct: Produto_CoreData){
-//
-//    }
+    func updateStockProduct(product: Produto_CoreData, newStock: Int32){
+        product.stock = newStock
+        do {
+            try context.save()
+        }
+        catch {
+            // error
+        }
+    }
     
     // CoreData - Sales
 
