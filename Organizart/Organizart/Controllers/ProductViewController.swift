@@ -14,6 +14,8 @@ class ProductView: UIViewController {
     
     @objc private func back(){
         dismiss(animated: true)
+        let newValue = Int32(stockValue.text!)
+        HomeVC.updateStockProduct(product: product, newStock: newValue!)
         // tem que colocar o pop up aqui
     }
     
@@ -155,6 +157,7 @@ class ProductView: UIViewController {
         self.view.addSubview(buttonDelete)
         
         self.view.insetsLayoutMarginsFromSafeArea = true
+        hideKeyboardWhenTappedAround()
         
         
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
@@ -288,5 +291,7 @@ class ProductView: UIViewController {
     }
     
 }
+
+
 
 
