@@ -172,11 +172,19 @@ class ProductView: UIViewController {
         self.view.insetsLayoutMarginsFromSafeArea = true
         
         
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 32, width: view.frame.size.width, height: 44))
-        navBar.backgroundColor = .clear
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        let appearence = UINavigationBarAppearance()
+        appearence.configureWithTransparentBackground()
+        
+        navBar.standardAppearance = appearence
+        
+//        navBar.isTranslucent = true
+//        navBar.backgroundColor = .clear
         
         view.addSubview(navBar)
 
+        
+        
         let navItem = UINavigationItem(title: product.title)
         
         let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
@@ -198,6 +206,14 @@ class ProductView: UIViewController {
         
         setupConfigProduct()
         setupConstraints()
+        
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            navBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            navBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            navBar.heightAnchor.constraint(equalToConstant: 44)
+        ])
     }
     
     func setupConfigProduct(){
