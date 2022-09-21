@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let logginSales = Sale.logSales()
     
     var productsModel = [Produto_CoreData]()
+    var salesModel = [Sale_CoreData_]()
     
     @objc private func clickedCardI(){
         let rootVC = InvoicingDetailsViewController()
@@ -90,5 +91,48 @@ class HomeViewController: UIViewController {
 //    func updateProduct(titleProduct: Produto_CoreData){
 //
 //    }
+    
+    // CoreData - Sales
 
+    func getAllSales(){
+        do {
+            salesModel = try context.fetch(Sale_CoreData_.fetchRequest())
+        }
+        catch {
+            // error
+        }
+        
+    }
+    
+    func newSale(clientName: String, saleFormat: String, id: Int16, totalPrice: Float, productsChosen: [Produto_CoreData]){
+        let newSale = Sale_CoreData_(context: context)
+        newSale.clientName = clientName
+        newSale.saleFormat = saleFormat
+        newSale.id = id
+        newSale.totalPrice = totalPrice
+        newSale.productsChosen = productsChosen as NSObject
+        
+        do {
+            try context.save()
+            salesModel.append(newSale)
+            getAllSales()
+        }
+        catch {
+            // error
+        }
+        
+    }
+    
+    func deleteSale(sale: Sale_CoreData_){
+        context.delete(sale)
+        
+        do {
+            try context.save()
+        }
+        catch {
+            // error
+        }
+        
+    }
+    
 }
