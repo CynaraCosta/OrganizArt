@@ -126,37 +126,19 @@ class ProductView: UIViewController {
         return buttonDelete
     }()
     
-    private var cardValue: UIView = {
-        let cardValue = UIView()
-        cardValue.backgroundColor = .red
-        
+    private var valueLabel: UILabel = {
         let valueLabel = UILabel()
-        
         valueLabel.text = "Valor"
-        valueLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        
+        valueLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        return valueLabel
+    }()
+    
+    private var realLabel: UILabel = {
         let realLabel = UILabel()
-        realLabel.text = "R$600,00"
-        realLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        realLabel.text = "R$ 600,00"
+        realLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         realLabel.frame = CGRect(x: 0, y: 0, width: 32, height: 0)
-        
-        cardValue.addSubview(valueLabel)
-        cardValue.addSubview(realLabel)
-        
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            valueLabel.leadingAnchor.constraint(equalTo: cardValue.leadingAnchor, constant: 8),
-            valueLabel.centerYAnchor.constraint(equalTo: cardValue.centerYAnchor)
-        ])
-        
-        realLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            //            realLabel.trailingAnchor.constraint(equalTo: cardValue.trailingAnchor, constant: -32),
-            realLabel.trailingAnchor.constraint(equalTo: cardValue.trailingAnchor, constant: -64),
-            realLabel.centerYAnchor.constraint(equalTo: cardValue.centerYAnchor)
-        ])
-        
-        return cardValue
+        return realLabel
     }()
     
     override func viewDidLoad() {
@@ -168,7 +150,8 @@ class ProductView: UIViewController {
         self.view.addSubview(buttonPlus)
         self.view.addSubview(titleProduct)
         self.view.addSubview(descriptionProduct)
-        self.view.addSubview(cardValue)
+        self.view.addSubview(valueLabel)
+        self.view.addSubview(realLabel)
         self.view.addSubview(buttonDelete)
         
         self.view.insetsLayoutMarginsFromSafeArea = true
@@ -221,6 +204,7 @@ class ProductView: UIViewController {
     func setupConfigProduct(){
         stockValue.text = String(product.stock)
         titleProduct.text = product.title
+        realLabel.text = "R$ " + String(product.price)
         descriptionProduct.text = product.description_
         
         
@@ -281,16 +265,21 @@ class ProductView: UIViewController {
             descriptionProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32)
         ])
         
-        cardValue.translatesAutoresizingMaskIntoConstraints = false
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardValue.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
-            cardValue.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 32),
-            cardValue.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 32)
+            valueLabel.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 24),
+            valueLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32)
+        ])
+        
+        realLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            realLabel.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 24),
+            realLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -(realLabel.frame.width))
         ])
         
         buttonDelete.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonDelete.topAnchor.constraint(equalTo: cardValue.bottomAnchor, constant: 32),
+            buttonDelete.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: 32),
             buttonDelete.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
             buttonDelete.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
             //            buttonDelete.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -16)
