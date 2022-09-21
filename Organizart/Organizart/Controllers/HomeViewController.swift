@@ -8,6 +8,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    let tableView = UITableView()
+    
+    private let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    )
+    
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let loggingProducts = Product.logProducts()
@@ -21,6 +29,45 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         getAllProducts()
         self.view = HomeView_
+        
+        collectionView.isScrollEnabled = true
+        collectionView.isUserInteractionEnabled = true
+        collectionView.alwaysBounceHorizontal = true
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.itemSize = CGSize(width: 194, height: 234)
+        }
+        
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
+        
+        view.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "HomeTableViewCell")
+//        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 56),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -500)
+        ])
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 400),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 3)
+        ])
+        
+
         // Do any additional setup after loading the view.
     }
     
@@ -80,4 +127,46 @@ class HomeViewController: UIViewController {
 //
 //    }
 
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath)
+        
+        cell.textLabel?.text = "Cell \(indexPath.row + 1)"
+        
+        return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductsCell.identifier, for: indexPath)
+        
+        return cell
+    }
+    
+    private func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: 237, height: 286)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    
+    
+    
 }
