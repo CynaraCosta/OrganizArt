@@ -10,6 +10,9 @@ import UIKit
 class HomeViewController: UIViewController {
     
     let tableView = UITableView()
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     
     private let collectionView = UICollectionView(
         frame: .zero,
@@ -30,6 +33,11 @@ class HomeViewController: UIViewController {
         getAllProducts()
         self.view = HomeView_
         
+        view.addSubview(scrollView)
+        scrollView.backgroundColor = .green
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height * 2)
+        
+        
         collectionView.isScrollEnabled = true
         collectionView.isUserInteractionEnabled = true
         collectionView.alwaysBounceHorizontal = true
@@ -39,33 +47,32 @@ class HomeViewController: UIViewController {
             layout.itemSize = CGSize(width: 194, height: 234)
         }
         
-        view.addSubview(collectionView)
+        //view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
         
-        view.addSubview(tableView)
+        
+//        view.addSubview(tableView)
         tableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
+        scrollView.addSubview(tableView)
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 56),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -500)
-        ])
+        tableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        tableView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3/4).isActive = true
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 400),
-            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
-            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 3)
-        ])
+        
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            collectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+//            collectionView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 400),
+//            collectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -32),
+//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 3)
+//        ])
         
 
         // Do any additional setup after loading the view.
@@ -79,6 +86,32 @@ class HomeViewController: UIViewController {
 //        }
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        //let scrollView = UIScrollView(frame: view.bounds)
+//        scrollView.backgroundColor = .green
+//        view.addSubview(scrollView)
+//        scrollView.addSubview(collectionView)
+        
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height * 2)
+        
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            tableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true,
+//            tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+//            tableView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3/4).isActive = true
+//        ])
+        
+        
+//        scrollView.addSubview(tableView)
+        
+        
+//
+        
+    }
+
     
     // CoreData - Products
     

@@ -68,6 +68,7 @@ class HomeView: UIView {
     }
     
     
+    
     func setupConstraints(){
 
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
