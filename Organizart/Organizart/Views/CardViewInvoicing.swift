@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardViewInvoicing: UIView {
+class CardViewInvoicing: UIButton {
     
 //    let cardViewInvoicing = UIView()
 //    cardViewInvoicing.layer.cornerRadius = 8

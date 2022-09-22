@@ -11,7 +11,6 @@ class HomeView: UIView {
     
     let card = CardViewInvoicing()
     let scrollView = UIScrollView()
-    
 
     private let cardView: UIView = {
         let cardView = UIView()
@@ -118,7 +117,10 @@ class HomeView: UIView {
         addSubview(productsCollectionView)
         addSubview(seeMoreProductsButton)
         addSubview(seeMoreSalesButton)
+                
         setupConstraints()
+        
+//        card.backgroundColor = .systemBackground
         
     }
     

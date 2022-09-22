@@ -26,6 +26,14 @@ class HomeViewController: UIViewController {
     
     var productsModel = [Produto_CoreData]()
     
+    @objc private func clickedCardI(){
+        let rootVC = InvoicingDetailsViewController()
+        rootVC.view.backgroundColor = .systemBackground
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
     let HomeView_ = HomeView()
     
     override func viewDidLoad() {
@@ -58,11 +66,15 @@ class HomeViewController: UIViewController {
         salesTableView.dataSource = self
 //        salesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
+        let cardI = HomeView_.card
+        
+        cardI.addTarget(self, action: #selector(clickedCardI), for: .touchUpInside)
+        
+        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         getAllProducts()
-        print(productsModel.count)
 //        for product in productsModel {
 //            deleteProduct(product: product)
 //        }

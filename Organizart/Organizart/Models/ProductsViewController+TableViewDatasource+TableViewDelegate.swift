@@ -21,7 +21,8 @@ extension ProductsViewController: UITableViewDataSource {
         
         Home.getAllProducts()
 //        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: Home.productsModel[indexPath.row].picture!)
-        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: "cabeca")
+        
+        cell.configure(name: Home.productsModel[indexPath.row].title, price: String(Home.productsModel[indexPath.row].price), stock: String(Home.productsModel[indexPath.row].stock), photo: Home.productsModel[indexPath.row].picture!)
         
         return cell
     }
@@ -36,7 +37,11 @@ extension ProductsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // setar
+        let product = Home.productsModel[indexPath.row]
+        let vc = ProductView()
+        vc.product = product
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
 }

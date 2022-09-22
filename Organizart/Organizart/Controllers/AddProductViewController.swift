@@ -23,10 +23,12 @@ class AddProductViewController: UIViewController {
         let stockV = stockValue.text!
         let priceV = inputPrice.text!
         
+
+        
         if let stock = Int(stockV), let price = Float(priceV) {
             let stockFlex = stock
             let priceFlex = price
-            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: "cabeca")
+            Home.newProduct(title: inputName.text!, description_: inputDescription.text!, price: priceFlex, stock: Int32(stockFlex), picture: nameImage)
             labelError.isHidden = true
             dismiss(animated: true)
         } else {
@@ -68,6 +70,11 @@ class AddProductViewController: UIViewController {
         vc.allowsEditing = true
         present(vc, animated: true)
     }
+    
+    private var nameImage: String = {
+        var nameImage = ""
+        return nameImage
+    }()
     
     private let buttonImage: UIButton = {
         let buttonImage = UIButton()
@@ -219,9 +226,9 @@ class AddProductViewController: UIViewController {
         self.view.addSubview(inputPrice)
         self.view.addSubview(labelError)
         
-        
-        
         setupConstraints()
+        hideKeyboardWhenTappedAround()
+
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "purple-700")
@@ -258,11 +265,13 @@ class AddProductViewController: UIViewController {
         ])
         
         
+        
         stockValue.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stockValue.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 16),
             stockValue.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            stockValue.widthAnchor.constraint(equalToConstant: 42),
+//            stockValue.widthAnchor.constraint(equalToConstant: 42),
+            stockValue.widthAnchor.constraint(equalTo: buttonMinus.widthAnchor),
             stockValue.bottomAnchor.constraint(equalTo: inputName.topAnchor, constant: -16)
             
         ])
@@ -319,17 +328,34 @@ class AddProductViewController: UIViewController {
 
 extension AddProductViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
-            buttonImage.isHidden = true
-            imagePhoto.image = image
-            imagePhoto.isHidden = false
-        }
         
-//        if let asset = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.phAsset.rawValue) ] as? PHAsset {
-//            let assetResources = PHAssetResource.assetResources(for: asset)
-//            assetResources.first!.originalFilename)
-//            
-//        }
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
+            
+            let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            let imgName = imageURL?.lastPathComponent
+            buttonImage.isHidden = true
+//            imagePhoto.image = image
+            imagePhoto.isHidden = false
+            
+//            let data = image.pngData()! as NSData
+            
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsURL.appendingPathComponent(imgName!)
+            let pngImage = image.jpegData(compressionQuality: 0.9)! as NSData
+            do {
+                try pngImage.write(to: fileURL, options: .atomic)
+            } catch {
+                print("error")
+            }
+            
+            let filePath = documentsURL.appendingPathComponent(imgName!).path
+            if FileManager.default.fileExists(atPath: filePath) {
+                let new = UIImage(contentsOfFile: filePath)
+                nameImage = imgName!
+                imagePhoto.image = new
+            }
+            
+        }
         
         picker.dismiss(animated: true, completion: nil)
         
@@ -337,5 +363,17 @@ extension AddProductViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
