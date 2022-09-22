@@ -159,19 +159,6 @@ class AddSaleViewController: UIViewController {
         
     }()
     
-    private let labelTeste: UILabel = {
-        let teste = UILabel()
-        teste.translatesAutoresizingMaskIntoConstraints = false
-        teste.font = UIFont.systemFont(ofSize: 24.0, weight: .regular)
-        teste.textColor = .systemRed
-        teste.text = "Testando"
-        return teste
-        
-    }()
-    
-    
-    
-    
     var saleFormatArray = ["Instagram", "Whatsapp", "Fenearte", "Feira de Casa Amarela", "Feira Na Laje"]
     
     
@@ -204,9 +191,9 @@ class AddSaleViewController: UIViewController {
     
     func setupScrollView(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .systemRed
+        scrollView.backgroundColor = .clear
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .yellow
+        contentView.backgroundColor = UIColor(named: "purple-80")
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
