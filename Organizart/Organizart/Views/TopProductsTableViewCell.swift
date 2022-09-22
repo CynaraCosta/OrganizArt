@@ -2,7 +2,7 @@
 //  TopProductsTableViewCell.swift
 //  Organizart
 //
-//  Created by Joana Lima on 21/09/22.
+//  Created by mccl on 22/09/22.
 //
 
 import UIKit

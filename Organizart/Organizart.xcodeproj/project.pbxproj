@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AD95A5828DC9ED9007D902E /* TopSalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */; };
-		3AD95A5928DC9ED9007D902E /* TopProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */; };
-		3AD95A5C28DC9EE8007D902E /* TopProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */; };
-		3AD95A5D28DC9EE8007D902E /* TopSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */; };
 		A40006BF28D8A26300AAA932 /* InvoicingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */; };
 		A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A44817BA28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld */; };
 		A44817BF28D0A5FB009CF192 /* Produto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */; };
@@ -33,12 +29,16 @@
 		A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A446B228CF5288005E52B9 /* ViewController.swift */; };
 		A4A446B828CF528A005E52B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A446B728CF528A005E52B9 /* Assets.xcassets */; };
 		A4A446BB28CF528A005E52B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A446B928CF528A005E52B9 /* LaunchScreen.storyboard */; };
+		A4ED2D8128D8DB8F0035E000 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED2D8028D8DB8F0035E000 /* ProductViewController.swift */; };
 		BD1043F428DB3724005FD5EE /* HomeSalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1043F328DB3724005FD5EE /* HomeSalesTableViewCell.swift */; };
 		BD1043F828DBA9E3005FD5EE /* HomeSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1043F728DBA9E3005FD5EE /* HomeSalesViewController.swift */; };
 		BD45A3B028D8A9E200CA8F18 /* HomeProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD45A3AF28D8A9E200CA8F18 /* HomeProductsCell.swift */; };
-		A4ED2D8128D8DB8F0035E000 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED2D8028D8DB8F0035E000 /* ProductViewController.swift */; };
 		C116467728DB3FD60068ED2D /* AddSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116467628DB3FD60068ED2D /* AddSaleViewController.swift */; };
 		C116467928DBD4660068ED2D /* ProductsAddSaleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116467828DBD4660068ED2D /* ProductsAddSaleTableViewCell.swift */; };
+		C116468328DCBC0D0068ED2D /* TopSalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116468228DCBC0D0068ED2D /* TopSalesTableViewCell.swift */; };
+		C116468528DCBC290068ED2D /* TopProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116468428DCBC290068ED2D /* TopProductsTableViewCell.swift */; };
+		C116468728DCBC400068ED2D /* TopSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116468628DCBC400068ED2D /* TopSalesViewController.swift */; };
+		C116468928DCBC570068ED2D /* TopProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116468828DCBC570068ED2D /* TopProductsViewController.swift */; };
 		C1CFD6A128D8B2F20013F45D /* ProductsChosenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFD6A028D8B2F20013F45D /* ProductsChosenTableViewCell.swift */; };
 		C1E42B1828CF63CC002E8459 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1728CF63CC002E8459 /* Product.swift */; };
 		C1E42B1A28CF6499002E8459 /* Sale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E42B1928CF6499002E8459 /* Sale.swift */; };
@@ -52,10 +52,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopSalesTableViewCell.swift; path = ../../../../../../Desktop/TopSalesTableViewCell.swift; sourceTree = "<group>"; };
-		3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopProductsTableViewCell.swift; path = ../../../../../../Desktop/TopProductsTableViewCell.swift; sourceTree = "<group>"; };
-		3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopProductsViewController.swift; path = ../../../../../../Desktop/TopProductsViewController.swift; sourceTree = "<group>"; };
-		3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopSalesViewController.swift; path = ../../../../../../Desktop/TopSalesViewController.swift; sourceTree = "<group>"; };
 		A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicingDetailsViewController.swift; sourceTree = "<group>"; };
 		A44817BB28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrganizartDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Produto+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -80,12 +76,16 @@
 		A4A446B728CF528A005E52B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4A446BA28CF528A005E52B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4A446BC28CF528A005E52B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4ED2D8028D8DB8F0035E000 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		BD1043F328DB3724005FD5EE /* HomeSalesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSalesTableViewCell.swift; sourceTree = "<group>"; };
 		BD1043F728DBA9E3005FD5EE /* HomeSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSalesViewController.swift; sourceTree = "<group>"; };
 		BD45A3AF28D8A9E200CA8F18 /* HomeProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductsCell.swift; sourceTree = "<group>"; };
-		A4ED2D8028D8DB8F0035E000 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		C116467628DB3FD60068ED2D /* AddSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSaleViewController.swift; sourceTree = "<group>"; };
 		C116467828DBD4660068ED2D /* ProductsAddSaleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAddSaleTableViewCell.swift; sourceTree = "<group>"; };
+		C116468228DCBC0D0068ED2D /* TopSalesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSalesTableViewCell.swift; sourceTree = "<group>"; };
+		C116468428DCBC290068ED2D /* TopProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopProductsTableViewCell.swift; sourceTree = "<group>"; };
+		C116468628DCBC400068ED2D /* TopSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSalesViewController.swift; sourceTree = "<group>"; };
+		C116468828DCBC570068ED2D /* TopProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopProductsViewController.swift; sourceTree = "<group>"; };
 		C1CFD6A028D8B2F20013F45D /* ProductsChosenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsChosenTableViewCell.swift; sourceTree = "<group>"; };
 		C1E42B1728CF63CC002E8459 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C1E42B1928CF6499002E8459 /* Sale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sale.swift; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 				C1E42B2B28D4B72F002E8459 /* SaleDetailsViewController.swift */,
 				A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */,
 				C116467628DB3FD60068ED2D /* AddSaleViewController.swift */,
-				3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */,
-				3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */,
+				C116468628DCBC400068ED2D /* TopSalesViewController.swift */,
+				C116468828DCBC570068ED2D /* TopProductsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,8 +194,8 @@
 				BD1043F328DB3724005FD5EE /* HomeSalesTableViewCell.swift */,
 				C1CFD6A028D8B2F20013F45D /* ProductsChosenTableViewCell.swift */,
 				C1E42B3128D89FBA002E8459 /* SaleDetailsView.swift */,
-				3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */,
-				3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */,
+				C116468228DCBC0D0068ED2D /* TopSalesTableViewCell.swift */,
+				C116468428DCBC290068ED2D /* TopProductsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,29 +299,29 @@
 				C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */,
 				A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */,
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
-				3AD95A5928DC9ED9007D902E /* TopProductsTableViewCell.swift in Sources */,
 				C1E42B2628D3A44B002E8459 /* ProductSold.swift in Sources */,
 				C116467928DBD4660068ED2D /* ProductsAddSaleTableViewCell.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
 				A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */,
 				C1CFD6A128D8B2F20013F45D /* ProductsChosenTableViewCell.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
-				3AD95A5828DC9ED9007D902E /* TopSalesTableViewCell.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
 				C1E42B2A28D4A5EE002E8459 /* CardViewSale.swift in Sources */,
-				3AD95A5C28DC9EE8007D902E /* TopProductsViewController.swift in Sources */,
+				C116468328DCBC0D0068ED2D /* TopSalesTableViewCell.swift in Sources */,
 				A40006BF28D8A26300AAA932 /* InvoicingDetailsViewController.swift in Sources */,
 				C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */,
+				C116468728DCBC400068ED2D /* TopSalesViewController.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
 				A4A446B128CF5288005E52B9 /* SceneDelegate.swift in Sources */,
 				A44817D028D0FB5F009CF192 /* ProductsViewController.swift in Sources */,
+				C116468528DCBC290068ED2D /* TopProductsTableViewCell.swift in Sources */,
 				A44817C528D0AC52009CF192 /* Sale_CoreData+CoreDataProperties.swift in Sources */,
 				C1E42B1A28CF6499002E8459 /* Sale.swift in Sources */,
 				A44817D228D0FB6B009CF192 /* SalesViewController.swift in Sources */,
+				C116468928DCBC570068ED2D /* TopProductsViewController.swift in Sources */,
 				A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */,
 				C1E42B2C28D4B72F002E8459 /* SaleDetailsViewController.swift in Sources */,
 				C1E42B1828CF63CC002E8459 /* Product.swift in Sources */,
-				3AD95A5D28DC9EE8007D902E /* TopSalesViewController.swift in Sources */,
 				A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */,
 				A44817E228D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift in Sources */,
 				C1E42B3228D89FBA002E8459 /* SaleDetailsView.swift in Sources */,

@@ -2,15 +2,15 @@
 //  TopProductsViewController.swift
 //  Organizart
 //
-//  Created by Joana Lima on 21/09/22.
+//  Created by mccl on 22/09/22.
 //
 
 import UIKit
 
 class TopProductsViewController: UIViewController {
-    
+
     let productsArray = Product.logProducts()
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TopProductsTableViewCell.self, forCellReuseIdentifier: "TopProductsTableViewCell")
@@ -20,29 +20,29 @@ class TopProductsViewController: UIViewController {
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         return tableView
     }()
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.backgroundColor = .systemPink
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        
+
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
+
 }
 
 extension TopProductsViewController: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TopProductsTableViewCell", for: indexPath) as? TopProductsTableViewCell else {
             return UITableViewCell()
         }
@@ -53,10 +53,9 @@ extension TopProductsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.clipsToBounds = true
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100 //size of the table view
     }
-    
-}
 
+}

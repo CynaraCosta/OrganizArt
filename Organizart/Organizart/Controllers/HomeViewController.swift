@@ -149,6 +149,89 @@ class HomeViewController: UIViewController {
         }
         
     }
+    
+    func updateStockProduct(product: Produto_CoreData, newStock: Int32){
+            product.stock = newStock
+            do {
+                try context.save()
+            }
+            catch {
+                // error
+            }
+        }
+        
+        func updateTitleProduct(product: Produto_CoreData, newTitle: String){
+            product.title = newTitle
+            do {
+                try context.save()
+            }
+            catch {
+                // error
+            }
+        }
+        
+        func updateDescriptionProduct(product: Produto_CoreData, newDescription: String){
+            product.description_ = newDescription
+            do {
+                try context.save()
+            }
+            catch {
+                // error
+            }
+        }
+        
+        func updatePriceProduct(product: Produto_CoreData, newPrice: Float){
+            product.price = newPrice
+            do {
+                try context.save()
+            }
+            catch {
+                // error
+            }
+        }
+        
+        // CoreData - Sales
+
+        func getAllSales(){
+            do {
+                salesModel = try context.fetch(Sale_CoreData_.fetchRequest())
+            }
+            catch {
+                // error
+            }
+            
+        }
+        
+        func newSale(clientName: String, saleFormat: String, id: Int16, totalPrice: Float, productsChosen: [Produto_CoreData]){
+            let newSale = Sale_CoreData_(context: context)
+            newSale.clientName = clientName
+            newSale.saleFormat = saleFormat
+            newSale.id = id
+            newSale.totalPrice = totalPrice
+            newSale.productsChosen = productsChosen as NSObject
+            
+            do {
+                try context.save()
+                salesModel.append(newSale)
+                getAllSales()
+            }
+            catch {
+                // error
+            }
+            
+        }
+        
+        func deleteSale(sale: Sale_CoreData_){
+            context.delete(sale)
+            
+            do {
+                try context.save()
+            }
+            catch {
+                // error
+            }
+            
+        }
 
 
 }
@@ -166,88 +249,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-func updateStockProduct(product: Produto_CoreData, newStock: Int32){
-        product.stock = newStock
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-    }
-    
-    func updateTitleProduct(product: Produto_CoreData, newTitle: String){
-        product.title = newTitle
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-    }
-    
-    func updateDescriptionProduct(product: Produto_CoreData, newDescription: String){
-        product.description_ = newDescription
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-    }
-    
-    func updatePriceProduct(product: Produto_CoreData, newPrice: Float){
-        product.price = newPrice
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-    }
-    
-    // CoreData - Sales
 
-    func getAllSales(){
-        do {
-            salesModel = try context.fetch(Sale_CoreData_.fetchRequest())
-        }
-        catch {
-            // error
-        }
-        
-    }
-    
-    func newSale(clientName: String, saleFormat: String, id: Int16, totalPrice: Float, productsChosen: [Produto_CoreData]){
-        let newSale = Sale_CoreData_(context: context)
-        newSale.clientName = clientName
-        newSale.saleFormat = saleFormat
-        newSale.id = id
-        newSale.totalPrice = totalPrice
-        newSale.productsChosen = productsChosen as NSObject
-        
-        do {
-            try context.save()
-            salesModel.append(newSale)
-            getAllSales()
-        }
-        catch {
-            // error
-        }
-        
-    }
-    
-    func deleteSale(sale: Sale_CoreData_){
-        context.delete(sale)
-        
-        do {
-            try context.save()
-        }
-        catch {
-            // error
-        }
-        
-    }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 

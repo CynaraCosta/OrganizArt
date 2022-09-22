@@ -2,7 +2,7 @@
 //  TopSalesTableViewCell.swift
 //  Organizart
 //
-//  Created by Joana Lima on 22/09/22.
+//  Created by mccl on 22/09/22.
 //
 
 import UIKit
