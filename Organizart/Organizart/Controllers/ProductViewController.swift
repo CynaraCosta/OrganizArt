@@ -14,9 +14,29 @@ class ProductView: UIViewController {
     
     @objc private func back(){
         dismiss(animated: true)
-        let newValue = Int32(stockValue.text!)
-        HomeVC.updateStockProduct(product: product, newStock: newValue!)
-        // tem que colocar o pop up aqui
+        let newStock = Int32(stockValue.text!)
+        HomeVC.updateStockProduct(product: product, newStock: newStock!)
+        
+        let newTitle = titleProduct.text
+        let newDescription = descriptionProduct.text
+        let newPrice = realLabel.text
+   
+        
+        HomeVC.updateTitleProduct(product: product, newTitle: newTitle!)
+        HomeVC.updateDescriptionProduct(product: product, newDescription: newDescription!)
+        HomeVC.updatePriceProduct(product: product, newPrice: Float(newPrice!)!)
+        
+        
+    }
+    
+    
+    @objc private func edit(){
+        titleProduct.backgroundColor = .secondarySystemBackground
+        titleProduct.isEditable = true
+        realLabel.backgroundColor = .secondarySystemBackground
+        realLabel.isEditable = true
+        descriptionProduct.backgroundColor = .secondarySystemBackground
+        descriptionProduct.isEditable = true
     }
     
     @objc private func deleteProduct(){
@@ -96,28 +116,39 @@ class ProductView: UIViewController {
         return stockValue
     }()
     
-    private var titleProduct: UILabel = {
-        let titleProduct = UILabel()
-        titleProduct.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        titleProduct.tintColor = .label
-        titleProduct.text = "Placeholder title"
-        return titleProduct
+    private let titleProduct: UITextView = {
+        let teste = UITextView()
+        teste.text = "Placeholder title"
+        teste.textColor = .label
+        teste.backgroundColor = .clear
+        teste.layer.cornerRadius = 8
+        teste.isEditable = false
+        teste.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        teste.isScrollEnabled = false
+        return teste
     }()
     
-    private var descriptionProduct: UILabel = {
-        let descriptionProduct = UILabel()
-        descriptionProduct.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        descriptionProduct.tintColor = .label
-        descriptionProduct.text = "Placeholder description Placeholder description Placeholder description Placeholder description Placeholder description Placeholder description Placeholder description Placeholder description"
-        descriptionProduct.numberOfLines = 0
-        return descriptionProduct
+    private let descriptionProduct: UITextView = {
+        let teste = UITextView()
+        teste.text = "Placeholder description Placeholder"
+        teste.textColor = .label
+        teste.backgroundColor = .clear
+        teste.layer.cornerRadius = 8
+        teste.isEditable = false
+        teste.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        
+        teste.isScrollEnabled = false
+        teste.frame.size.height = teste.contentSize.height
+        
+        return teste
     }()
+    
     
     private var buttonDelete: UIButton = {
         let buttonDelete = UIButton()
         buttonDelete.setTitle("Excluir produto", for: .normal)
         buttonDelete.titleLabel?.textColor = .label
-//        buttonDelete.backgroundColor = UIColor(named: "red-700")
+        //        buttonDelete.backgroundColor = UIColor(named: "red-700")
         buttonDelete.layer.cornerRadius = 8
         buttonDelete.addTarget(self, action: #selector(deleteProduct), for: .touchUpInside)
         if (buttonDelete.isSelected) {
@@ -130,17 +161,20 @@ class ProductView: UIViewController {
     
     private var valueLabel: UILabel = {
         let valueLabel = UILabel()
-        valueLabel.text = "Valor"
+        valueLabel.text = ""
         valueLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return valueLabel
     }()
     
-    private var realLabel: UILabel = {
-        let realLabel = UILabel()
-        realLabel.text = "R$ 600,00"
-        realLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        realLabel.frame = CGRect(x: 0, y: 0, width: 32, height: 0)
-        return realLabel
+    private let realLabel: UITextView = {
+        let teste = UITextView()
+        teste.text = "R$ 600,00"
+        teste.textColor = .label
+        teste.backgroundColor = .clear
+        teste.layer.cornerRadius = 8
+        teste.isEditable = false
+        teste.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        return teste
     }()
     
     override func viewDidLoad() {
@@ -150,15 +184,17 @@ class ProductView: UIViewController {
         self.view.addSubview(stockValue)
         self.view.addSubview(buttonMinus)
         self.view.addSubview(buttonPlus)
-        self.view.addSubview(titleProduct)
         self.view.addSubview(descriptionProduct)
-        self.view.addSubview(valueLabel)
+        //        self.view.addSubview(valueLabel)
         self.view.addSubview(realLabel)
         self.view.addSubview(buttonDelete)
+        self.view.addSubview(titleProduct)
         
         self.view.insetsLayoutMarginsFromSafeArea = true
+        titleProduct.delegate = self
+        descriptionProduct.delegate = self
+        realLabel.delegate = self
         hideKeyboardWhenTappedAround()
-        
         
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
         let appearence = UINavigationBarAppearance()
@@ -166,31 +202,31 @@ class ProductView: UIViewController {
         
         navBar.standardAppearance = appearence
         
-//        navBar.isTranslucent = true
-//        navBar.backgroundColor = .clear
+        //        navBar.isTranslucent = true
+        //        navBar.backgroundColor = .clear
         
         view.addSubview(navBar)
-
         
         
         let navItem = UINavigationItem(title: product.title)
         
         let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
         let backItem2 = UIBarButtonItem(title: "Voltar", style: .done, target: nil, action: #selector(back))
-
-        let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(back))
-
+        
+        let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(edit))
+        
         
         editItem.tintColor = UIColor(named: "purple-700")
         backItem.tintColor = UIColor(named: "purple-700")
         backItem2.tintColor = UIColor(named: "purple-700")
         
-        navItem.rightBarButtonItem = editItem
-        navItem.leftBarButtonItems = [backItem, backItem2]
-
-        navBar.setItems([navItem], animated: false)
-      
         
+        navItem.rightBarButtonItem = editItem
+        
+        
+        navItem.leftBarButtonItems = [backItem, backItem2]
+        
+        navBar.setItems([navItem], animated: false)
         
         setupConfigProduct()
         setupConstraints()
@@ -205,10 +241,11 @@ class ProductView: UIViewController {
     }
     
     func setupConfigProduct(){
+        
         stockValue.text = String(product.stock)
-        titleProduct.text = product.title
-        realLabel.text = "R$ " + String(product.price)
+        realLabel.text = String(product.price)
         descriptionProduct.text = product.description_
+        titleProduct.text = product.title
         
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -258,37 +295,43 @@ class ProductView: UIViewController {
         titleProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleProduct.topAnchor.constraint(equalTo: stockValue.bottomAnchor, constant: 32),
-            titleProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32)
+            titleProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
+            titleProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            titleProduct.heightAnchor.constraint(equalToConstant: 42)
         ])
         
         descriptionProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionProduct.topAnchor.constraint(equalTo: titleProduct.bottomAnchor, constant: 8),
             descriptionProduct.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
-            descriptionProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32)
+            descriptionProduct.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+//            descriptionProduct.heightAnchor.constraint(equalToConstant: descriptionProduct.contentSize.height)
+//            descriptionProduct.heightAnchor.constraint(equalToConstant: 42)
         ])
-        
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            valueLabel.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 24),
-            valueLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32)
-        ])
+    
         
         realLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             realLabel.topAnchor.constraint(equalTo: descriptionProduct.bottomAnchor, constant: 24),
-            realLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -(realLabel.frame.width))
+            realLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
+            realLabel.leadingAnchor.constraint(equalTo: descriptionProduct.leadingAnchor),
+            realLabel.heightAnchor.constraint(equalToConstant: 42)
         ])
         
         buttonDelete.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonDelete.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: 32),
+            buttonDelete.topAnchor.constraint(equalTo: realLabel.bottomAnchor, constant: 32),
             buttonDelete.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
             buttonDelete.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
             //            buttonDelete.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -16)
         ])
+    
         
     }
+    
+}
+
+extension UIViewController: UITextViewDelegate {
     
 }
 

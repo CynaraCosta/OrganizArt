@@ -98,6 +98,36 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func updateTitleProduct(product: Produto_CoreData, newTitle: String){
+        product.title = newTitle
+        do {
+            try context.save()
+        }
+        catch {
+            // error
+        }
+    }
+    
+    func updateDescriptionProduct(product: Produto_CoreData, newDescription: String){
+        product.description_ = newDescription
+        do {
+            try context.save()
+        }
+        catch {
+            // error
+        }
+    }
+    
+    func updatePriceProduct(product: Produto_CoreData, newPrice: Float){
+        product.price = newPrice
+        do {
+            try context.save()
+        }
+        catch {
+            // error
+        }
+    }
+    
     // CoreData - Sales
 
     func getAllSales(){
