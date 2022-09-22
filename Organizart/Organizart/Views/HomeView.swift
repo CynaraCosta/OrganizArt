@@ -191,7 +191,7 @@ class HomeView: UIView {
         
         seeMoreSalesButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            seeMoreSalesButton.topAnchor.constraint(equalTo:productsCollectionView.bottomAnchor, constant: 17),
+            seeMoreSalesButton.topAnchor.constraint(equalTo:productsCollectionView.bottomAnchor, constant: 11),
             seeMoreSalesButton.trailingAnchor.constraint(equalTo: card.trailingAnchor)
         ])
         
