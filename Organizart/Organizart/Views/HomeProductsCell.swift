@@ -13,6 +13,8 @@ class HomeProductsCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(named: "cabeca")
+        
         return imageView
         
     }()
@@ -51,18 +53,11 @@ class HomeProductsCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.05
         contentView.layer.shadowOffset = .zero
         contentView.layer.shadowRadius = 5
-        
-        let images = [
-            UIImage(named: "bombo infantil"),
-            UIImage(named: "bordado"),
-            UIImage(named: "bota telha"),
-            UIImage(named: "ovo em ceramica"),
-            UIImage(named: "planner"),
-            UIImage(named: "animais na vertical"),
+    
             
-        ].compactMap({ $0 })
+//        ].compactMap({ $0 })
         
-        imageView.image = images.randomElement()
+//        imageView.image = images.randomElement()
     }
     
     required init?(coder: NSCoder) {
@@ -94,6 +89,14 @@ class HomeProductsCell: UICollectionViewCell {
             unitsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             unitsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+    }
+    
+    func setImage(product: Product) {
+        imageView.image = UIImage(named: product.picture)
+        nameLabel.text = product.title
+        let randomInt = Int.random(in: 0...50)
+        unitsLabel.text = "\(randomInt) peças vendidas"
         
     }
     

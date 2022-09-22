@@ -13,9 +13,9 @@ class TopSalesTableViewCell: UITableViewCell {
     private var productTitle: UILabel = {
         var title = UILabel()
         title.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-        title.backgroundColor = .cyan
+//        title.backgroundColor = .cyan
         title.numberOfLines = 0
-        title.text = "Cabeça Grande Barro 40x50cm"
+        title.text = "Feira de Bom Jesus"
         
         return title
         
@@ -24,8 +24,8 @@ class TopSalesTableViewCell: UITableViewCell {
     private var priceLabel: UILabel = {
         var title = UILabel()
         title.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
-        title.backgroundColor = .yellow
-        title.text = "2x R$600,00"
+//        title.backgroundColor = .yellow
+        title.text = "R$5.000"
         
         return title
         
@@ -34,8 +34,9 @@ class TopSalesTableViewCell: UITableViewCell {
     
     private var rankLabel: UILabel = {
         var title = UILabel()
-        title.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
-        title.backgroundColor = .brown
+        title.font = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+        title.textColor = UIColor(named: "purple-700")
+//        title.backgroundColor = .brown
         title.text = "2"
         
         return title
@@ -59,7 +60,7 @@ class TopSalesTableViewCell: UITableViewCell {
         stack.spacing = 18
         stack.axis = .horizontal
         stack.distribution = .fill
-        stack.alignment = .fill
+        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
@@ -78,6 +79,9 @@ class TopSalesTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "TopProductsTableViewCell")
+        self.selectionStyle = .none
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .systemBackground
         
         hierarchy()
         setConstraints()
@@ -103,7 +107,7 @@ class TopSalesTableViewCell: UITableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             
@@ -116,13 +120,26 @@ class TopSalesTableViewCell: UITableViewCell {
         
     }
     
+    
     func set(saleFormat: String, index: Int) {
         productTitle.text = saleFormat
-        let randomInt = Int.random(in: 0...50000)
+        let randomInt = Int.random(in: 0...500)
         priceLabel.text = "R$ \(randomInt) em vendas"
         rankLabel.text = String(index)
         
         
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
+        self.contentView.layer.shadowColor = UIColor.label.cgColor
+        self.contentView.layer.shadowOpacity = 0.1
+        self.contentView.layer.shadowOffset = .zero
+        self.contentView.layer.shadowRadius = 2
         
     }
     

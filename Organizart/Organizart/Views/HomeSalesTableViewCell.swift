@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeSalesTableViewCell: UITableViewCell {
-    static let identifier = "HomeTableViewCell"
+    static let identifier = "HomeSalesTableViewCell"
     
     private let nameLabel: UILabel = {
         var methodName = UILabel()
@@ -31,7 +31,7 @@ class HomeSalesTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super .init(style: style, reuseIdentifier: reuseIdentifier)
+        super .init(style: style, reuseIdentifier: HomeSalesTableViewCell.identifier)
         
         self.backgroundColor = .clear
         contentView.backgroundColor = .systemBackground
@@ -71,6 +71,12 @@ class HomeSalesTableViewCell: UITableViewCell {
         
         
         
+    }
+    
+    func setCell(saleFormat: String) {
+        nameLabel.text = saleFormat
+        let randomInt = Int.random(in: 0...500)
+        salesLabel.text = "R$\(randomInt),00"
     }
     
 

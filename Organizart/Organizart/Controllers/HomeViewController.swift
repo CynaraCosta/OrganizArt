@@ -9,6 +9,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    let images = [
+        "bombo infantil",
+        "bordado",
+        "bota telha",
+        "ovo em ceramica",
+        "planner",
+        "animais na vertical"]
+    
+    let saleFormatArray = ["Instagram", "Whatsapp", "Fenearte", "Feira de Casa Amarela", "Feira Na Laje", "Feirinha UFPE", "Feirinha do Bom Jesus", "Feira de Casa Forte", "Fenahall", "Feira da Madalena"]
+    
+    var products: [Product] = []
+    
     let contentView = UIView()
     
     let salesTableView = UITableView()
@@ -35,12 +47,29 @@ class HomeViewController: UIViewController {
         self.present(navVC, animated: true)
     }
     
+    @objc private func seeMore() {
+        let rootVC = TopProductsViewController()
+        rootVC.view.backgroundColor = .systemBackground
+        rootVC.modalPresentationStyle = .fullScreen
+        present(rootVC, animated: true, completion: nil)
+        
+    }
+    
+    @objc private func seeMoreSales() {
+        let rootVC = TopSalesViewController()
+        rootVC.view.backgroundColor = .systemBackground
+        rootVC.modalPresentationStyle = .fullScreen
+        present(rootVC, animated: true, completion: nil)
+        
+    }
+    
     let HomeView_ = HomeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllProducts()
         self.view = HomeView_
+        products = Product.logProducts()
                 
 //        collectionView.isScrollEnabled = true
 //        collectionView.isUserInteractionEnabled = true
@@ -70,6 +99,9 @@ class HomeViewController: UIViewController {
         let cardI = HomeView_.card
         
         cardI.addTarget(self, action: #selector(clickedCardI), for: .touchUpInside)
+        
+        HomeView_.seeMoreProductsButton.addTarget(self, action: #selector(seeMore), for: .touchUpInside)
+        HomeView_.seeMoreSalesButton.addTarget(self, action: #selector(seeMoreSales), for: .touchUpInside)
         
         // Do any additional setup after loading the view.
     }
@@ -239,11 +271,13 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeSalesTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeSalesTableViewCell", for: indexPath) as! HomeSalesTableViewCell
+        let sale = saleFormatArray[indexPath.row]
+        cell.setCell(saleFormat: sale)
         
         return cell
     }
@@ -254,12 +288,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductsCell.identifier, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeProductsCell", for: indexPath) as! HomeProductsCell
+//        let imageName = images[indexPath.item]
+        let product = products[indexPath.item]
+        cell.setImage(product: product)
         cell.backgroundColor = .clear
         return cell
     }

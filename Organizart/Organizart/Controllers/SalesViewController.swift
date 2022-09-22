@@ -9,7 +9,7 @@ import UIKit
 
 class SalesViewController: UIViewController {
     
-    @objc private func addProduct(){
+    @objc private func addSale(){
         let rootVC = AddSaleViewController()
         rootVC.view.backgroundColor = UIColor(named: "purple-80")
         rootVC.title = "Adicionar venda"
@@ -30,7 +30,7 @@ class SalesViewController: UIViewController {
         buttonPlus.contentMode = .scaleAspectFit
         buttonPlus.tintColor = .label
         buttonPlus.translatesAutoresizingMaskIntoConstraints = false
-        buttonPlus.addTarget(self, action: #selector(addProduct), for: .touchUpInside)
+        buttonPlus.addTarget(self, action: #selector(addSale), for: .touchUpInside)
         
         return buttonPlus
         
