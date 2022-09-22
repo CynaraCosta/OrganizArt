@@ -12,13 +12,13 @@ class SaleDetailsViewController: UIViewController {
     public var sale: Sale = Sale(clientName: "", saleFormat: "", productsChosen: [], id: 0, totalPrice: 0)
     
     @objc private func back(){
-            dismiss(animated: true)
-        }
+        dismiss(animated: true)
+    }
     
     public var orderIdLabel: UILabel = {
         var orderIdLabel = UILabel()
         orderIdLabel.font = UIFont.systemFont(ofSize: 22.0, weight: .bold)
-//        orderIdLabel.backgroundColor = .brown
+        //        orderIdLabel.backgroundColor = .brown
         orderIdLabel.textColor = .label
         orderIdLabel.text = "#014"
         
@@ -30,7 +30,7 @@ class SaleDetailsViewController: UIViewController {
     public var dateLabel: UILabel = {
         var date = UILabel()
         date.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
-//        date.backgroundColor = .systemRed
+        //        date.backgroundColor = .systemRed
         date.text = "20/09/2022"
         
         return date
@@ -43,7 +43,7 @@ class SaleDetailsViewController: UIViewController {
         name.numberOfLines = 0
         name.textColor = .label
         name.text = "Cynara Valéria de Oliveira Costa do Amaral Cavalcanti"
-
+        
         
         return name
         
@@ -53,7 +53,7 @@ class SaleDetailsViewController: UIViewController {
         var saleFormatLabel = UILabel()
         saleFormatLabel.font = UIFont.systemFont(ofSize: 11.0, weight: .regular)
         saleFormatLabel.textColor = .label
-//        saleFormatLabel.backgroundColor = .yellow
+        //        saleFormatLabel.backgroundColor = .yellow
         saleFormatLabel.text = "Feira Bom Jesus"
         saleFormatLabel.numberOfLines = 0
         saleFormatLabel.textAlignment = .center
@@ -93,7 +93,7 @@ class SaleDetailsViewController: UIViewController {
         
         return buttonDelete
         
-        }()
+    }()
     
     public let tagView: UIView = {
         let tagView = UIView()
@@ -110,7 +110,7 @@ class SaleDetailsViewController: UIViewController {
         stack.distribution = .fill
         stack.alignment = .fill
         stack.axis = .horizontal
-//        stack.backgroundColor = .yellow
+        //        stack.backgroundColor = .yellow
         stack.spacing = 195
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -123,7 +123,7 @@ class SaleDetailsViewController: UIViewController {
         stack.distribution = .fill
         stack.alignment = .center
         stack.axis = .horizontal
-//        stack.backgroundColor = .blue
+        //        stack.backgroundColor = .blue
         stack.spacing = 50
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -136,7 +136,7 @@ class SaleDetailsViewController: UIViewController {
         stack.distribution = .fill
         stack.alignment = .fill
         stack.axis = .horizontal
-//        stack.backgroundColor = .blue
+        //        stack.backgroundColor = .blue
         stack.spacing = 160
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -170,7 +170,7 @@ class SaleDetailsViewController: UIViewController {
             firstStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 96),
             firstStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             firstStackView.widthAnchor.constraint(equalToConstant: 326),
-
+            
             
             secondStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 128),
             secondStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -191,9 +191,9 @@ class SaleDetailsViewController: UIViewController {
             buttonDelete.topAnchor.constraint(equalTo: priceStackView.bottomAnchor, constant: 32),
             buttonDelete.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
             buttonDelete.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
-
-        
-        
+            
+            
+            
         ])
         
         
@@ -202,7 +202,7 @@ class SaleDetailsViewController: UIViewController {
     let detailsView = SaleDetailsView()
     var productsChosenTableView = UITableView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(productsChosenTableView)
@@ -220,28 +220,40 @@ class SaleDetailsViewController: UIViewController {
         
         
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 32, width: view.frame.size.width, height: 44))
-                navBar.backgroundColor = .clear
-                
-                view.addSubview(navBar)
-
-            let navItem = UINavigationItem(title: "#\(sale.id)")
-                
-                let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
-                let backItem2 = UIBarButtonItem(title: "Voltar", style: .done, target: nil, action: #selector(back))
-
-                let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(back))
-
-                
-                editItem.tintColor = UIColor(named: "purple-700")
-                backItem.tintColor = UIColor(named: "purple-700")
-                backItem2.tintColor = UIColor(named: "purple-700")
-                
-                navItem.rightBarButtonItem = editItem
-                navItem.leftBarButtonItems = [backItem, backItem2]
-
-                navBar.setItems([navItem], animated: false)
-              
-
+        
+        let appearence = UINavigationBarAppearance()
+        appearence.configureWithTransparentBackground()
+        
+        navBar.standardAppearance = appearence
+        
+        view.addSubview(navBar)
+        
+        let navItem = UINavigationItem(title: "#\(sale.id)")
+        
+        let backItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: nil, action: #selector(back))
+        let backItem2 = UIBarButtonItem(title: "Voltar", style: .done, target: nil, action: #selector(back))
+        
+        let editItem = UIBarButtonItem(title: "Editar", style: .done, target: nil, action: #selector(back))
+        
+        
+        editItem.tintColor = UIColor(named: "purple-700")
+        backItem.tintColor = UIColor(named: "purple-700")
+        backItem2.tintColor = UIColor(named: "purple-700")
+        
+        navItem.rightBarButtonItem = editItem
+        navItem.leftBarButtonItems = [backItem, backItem2]
+        
+        navBar.setItems([navItem], animated: false)
+        
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            navBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            navBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            navBar.heightAnchor.constraint(equalToConstant: 44)
+        ])
+        
+        
     }
     
     func configureTableView() {
@@ -267,7 +279,7 @@ class SaleDetailsViewController: UIViewController {
     func setTableViewDelegates() {
         productsChosenTableView.delegate = self
         productsChosenTableView.dataSource = self
-
+        
     }
     
     func setupInfo() {
@@ -293,7 +305,7 @@ extension SaleDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let products = sale.productsChosen[indexPath.row]
         cell.set(product: products)
         cell.layer.cornerRadius = 8
-
+        
         
         return cell
     }
