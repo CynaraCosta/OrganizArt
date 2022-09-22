@@ -48,9 +48,9 @@ class HomeProductsCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 5
         
         contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.shadowOpacity = 0.05
         contentView.layer.shadowOffset = .zero
-        contentView.layer.shadowRadius = 10
+        contentView.layer.shadowRadius = 5
         
         let images = [
             UIImage(named: "bombo infantil"),

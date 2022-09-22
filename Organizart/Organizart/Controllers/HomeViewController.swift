@@ -43,8 +43,13 @@ class HomeViewController: UIViewController {
 //        }
         
         //view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+        HomeView_.productsCollectionView.dataSource = self
+        HomeView_.productsCollectionView.delegate = self
+        
+        HomeView_.salesTableView.dataSource = self
+        HomeView_.salesTableView.delegate = self
 //        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
         
         print("celula carregou?")
@@ -153,14 +158,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
 
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductsCell.identifier, for: indexPath)
         
+        cell.backgroundColor = .black
         return cell
     }
     

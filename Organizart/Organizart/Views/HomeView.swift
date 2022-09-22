@@ -43,7 +43,7 @@ class HomeView: UIView {
         let topProduct = UILabel()
         topProduct.text = "Produtos mais vendidos"
         topProduct.frame = CGRect(x: 0, y: 0, width: 150, height: 25)
-        topProduct.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        topProduct.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         topProduct.textColor = .label
         return topProduct
     }()
@@ -51,6 +51,8 @@ class HomeView: UIView {
     private let topSaleFormat: UILabel = {
         let topSaleFormat = UILabel()
         topSaleFormat.text = "Top meios de venda"
+        topSaleFormat.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        topSaleFormat.textColor = .label
         return topSaleFormat
     }()
     
@@ -61,6 +63,8 @@ class HomeView: UIView {
         
         salesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         salesTableView.translatesAutoresizingMaskIntoConstraints = false
+        salesTableView.showsVerticalScrollIndicator = false
+        salesTableView.backgroundColor = .clear
         salesTableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
         
         return salesTableView
@@ -77,21 +81,43 @@ class HomeView: UIView {
         collectionView.isUserInteractionEnabled = true
         collectionView.alwaysBounceHorizontal = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
         collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
         
         return collectionView
+    }()
+    
+    let seeMoreProductsButton: UIButton = {
+        let config = UIButton.Configuration.plain()
+        let seeMoreProductsButton = UIButton(configuration: config)
+        seeMoreProductsButton.setTitleColor(UIColor.systemPurple, for: .normal)
+        seeMoreProductsButton.setTitle("Ver mais", for: .normal)
+        return seeMoreProductsButton
+        
+    }()
+    
+    let seeMoreSalesButton: UIButton = {
+        let config = UIButton.Configuration.plain()
+        let seeMoreSalesButton = UIButton(configuration: config)
+        seeMoreSalesButton.setTitleColor(UIColor.systemPurple, for: .normal)
+        seeMoreSalesButton.setTitle("Ver mais", for: .normal)
+        return seeMoreSalesButton
+        
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubview(backgroundView)
-        addSubview(scrollView)
-        scrollView.addSubview(invoicingLabel)
-        scrollView.addSubview(card)
-        scrollView.addSubview(topProduct)
-        scrollView.addSubview(salesTableView)
-        scrollView.addSubview(productsCollectionView)
+        addSubview(invoicingLabel)
+        addSubview(card)
+        addSubview(topProduct)
+        addSubview(topSaleFormat)
+        addSubview(salesTableView)
+        addSubview(productsCollectionView)
+        addSubview(seeMoreProductsButton)
+        addSubview(seeMoreSalesButton)
         setupConstraints()
         
     }
@@ -104,16 +130,16 @@ class HomeView: UIView {
     
     func setupConstraints(){
         
-        scrollView.backgroundColor = .green
-        scrollView.contentSize = CGSize(width: self.frame.width, height: self.frame.height * 2)
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+//        scrollView.backgroundColor = .green
+//        scrollView.contentSize = CGSize(width: self.frame.width, height: self.frame.height * 2)
+//
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
+//            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//        ])
         
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -142,40 +168,47 @@ class HomeView: UIView {
             topProduct.leadingAnchor.constraint(equalTo: card.leadingAnchor),
         ])
         
+        seeMoreProductsButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            salesTableView.topAnchor.constraint(equalTo: topProduct.bottomAnchor),
+            seeMoreProductsButton.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 20),
+            seeMoreProductsButton.trailingAnchor.constraint(equalTo: card.trailingAnchor)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            productsCollectionView.topAnchor.constraint(equalTo: topProduct.bottomAnchor,constant: 10),
+            productsCollectionView.leadingAnchor.constraint(equalTo: card.leadingAnchor),
+            productsCollectionView.trailingAnchor.constraint(equalTo: card.trailingAnchor),
+            productsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -325)
+        ])
+        
+        topSaleFormat.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topSaleFormat.topAnchor.constraint(equalTo: productsCollectionView.bottomAnchor, constant: 15),
+            topSaleFormat.leadingAnchor.constraint(equalTo: card.leadingAnchor),
+            topSaleFormat.trailingAnchor.constraint(equalTo: card.trailingAnchor),
+        ])
+        
+        seeMoreSalesButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            seeMoreSalesButton.topAnchor.constraint(equalTo:productsCollectionView.bottomAnchor, constant: 17),
+            seeMoreSalesButton.trailingAnchor.constraint(equalTo: card.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            salesTableView.topAnchor.constraint(equalTo: topSaleFormat.bottomAnchor, constant: 10),
             salesTableView.leadingAnchor.constraint(equalTo: card.leadingAnchor),
-            salesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50)
+            salesTableView.trailingAnchor.constraint(equalTo: card.trailingAnchor),
+            salesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100)
         ])
         
-        NSLayoutConstraint.activate([
-            productsCollectionView.topAnchor.constraint(equalTo: salesTableView.bottomAnchor,constant: 5),
-            productsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            productsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 50)
-        ])
 
     }
     
     
 }
 
-extension HomeView {
-    
-    func setTableViewDataSourceDelegate(){
-        salesTableView.dataSource = HomeViewController()
-        salesTableView.delegate = HomeViewController()
-        salesTableView.reloadData()
-    }
-    
-    func setCollectionViewDataSource(){
-        productsCollectionView.dataSource = HomeViewController()
-        productsCollectionView.delegate = HomeViewController()
-        productsCollectionView.reloadData()
-        
-    }
-    
-    
-}
+
 
 
 

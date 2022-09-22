@@ -37,7 +37,7 @@ class HomeSalesTableViewCell: UITableViewCell {
         contentView.backgroundColor = .systemBackground
         
         contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.1
+        contentView.layer.shadowOpacity = 0.05
         contentView.layer.shadowOffset = .zero
         contentView.layer.shadowRadius = 5
         
