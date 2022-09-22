@@ -8,6 +8,17 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    let contentView = UIView()
+    
+    let salesTableView = UITableView()
+    
+    
+    private let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    )
+    
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let loggingProducts = Product.logProducts()
@@ -29,6 +40,32 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         getAllProducts()
         self.view = HomeView_
+                
+//        collectionView.isScrollEnabled = true
+//        collectionView.isUserInteractionEnabled = true
+//        collectionView.alwaysBounceHorizontal = true
+        
+//        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            layout.scrollDirection = .horizontal
+//            layout.itemSize = CGSize(width: 194, height: 234)
+//        }
+        
+        //view.addSubview(collectionView)
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+        HomeView_.productsCollectionView.dataSource = self
+        HomeView_.productsCollectionView.delegate = self
+        
+        HomeView_.salesTableView.dataSource = self
+        HomeView_.salesTableView.delegate = self
+//        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
+        
+        print("celula carregou?")
+        salesTableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
+        salesTableView.delegate = self
+        salesTableView.dataSource = self
+//        salesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
         let cardI = HomeView_.card
         
         cardI.addTarget(self, action: #selector(clickedCardI), for: .touchUpInside)
@@ -43,6 +80,31 @@ class HomeViewController: UIViewController {
 //        }
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+
+//        view.addSubview(salesTableView)
+//        salesTableView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            salesTableView.topAnchor.constraint(equalTo: view.topAnchor,constant: -50),
+//            salesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            salesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            salesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 50)
+//        ])
+
+        
+
+        
+        
+//        scrollView.addSubview(tableView)
+        
+        
+//
+        
+    }
+
     
     // CoreData - Products
     
@@ -86,9 +148,48 @@ class HomeViewController: UIViewController {
         }
         
     }
-    
-//    func updateProduct(titleProduct: Produto_CoreData){
-//
-//    }
 
+
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeSalesTableViewCell.identifier, for: indexPath)
+
+        return cell
+    }
+}
+
+
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductsCell.identifier, for: indexPath)
+        
+        cell.backgroundColor = .black
+        return cell
+    }
+    
+    private func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: 237, height: 286)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    
+    
+    
 }
