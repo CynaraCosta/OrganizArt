@@ -9,6 +9,9 @@ import UIKit
 
 class AddSaleViewController: UIViewController {
     
+    public var saleFormatSelected: String = ""
+    public var productSelected: [Produto_CoreData] = [Produto_CoreData()]
+    
     @objc private func back(){
         dismiss(animated: true)
         // tem que colocar o pop up aqui
@@ -20,7 +23,6 @@ class AddSaleViewController: UIViewController {
     
     @objc private func addFormat() {
         saleFormatArray.append(inputNewSaleFormat.text!)
-        updateConstraints()
         //        tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height).isActive = true
         tableView.updateConstraints()
         tableView.reloadData()
@@ -97,8 +99,10 @@ class AddSaleViewController: UIViewController {
     
     private var productsTableView: UITableView = {
         var tableView = UITableView()
-        tableView.register(ProductsAddSaleTableViewCell.self, forCellReuseIdentifier: "ProductsAddSaleTableViewCell")
+        tableView.register(ProductsAddSaleTableViewCell.self, forCellReuseIdentifier: ProductsAddSaleTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsMultipleSelection = true
+        tableView.isMultipleTouchEnabled = true
         
         return tableView
         
@@ -182,9 +186,6 @@ class AddSaleViewController: UIViewController {
         configureProductsTableView()
         hideKeyboardWhenTappedAround()
         
-        
-        
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "chevron.backward"), style: .done, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "purple-700")
         
@@ -194,6 +195,11 @@ class AddSaleViewController: UIViewController {
         
         self.view.backgroundColor = .systemBackground
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        productsTableView.reloadData()
+        tableView.reloadData()
     }
     
     func setupScrollView(){
@@ -271,7 +277,7 @@ class AddSaleViewController: UIViewController {
     
     func configureProductsTableView() {
         setTableViewProductsDelegates()
-        productsTableView.rowHeight = UITableView.automaticDimension
+//        productsTableView.rowHeight = UITableView.automaticDimension
         productsTableView.layer.cornerRadius = 8
         productsTableView.allowsSelection = true
         productsTableView.isUserInteractionEnabled = true
@@ -279,7 +285,7 @@ class AddSaleViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             productsTableView.topAnchor.constraint(equalTo: productsExplanation.bottomAnchor, constant: 25),
-//            productsTableView.heightAnchor.constraint(equalToConstant: 400),
+            //            productsTableView.heightAnchor.constraint(equalToConstant: 400),
             productsTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             productsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             productsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
@@ -300,14 +306,6 @@ class AddSaleViewController: UIViewController {
         productsTableView.delegate = self
         productsTableView.dataSource = self
         
-    }
-    
-    func updateConstraints() {
-        // You should handle UI updates on the main queue, whenever possible
-        DispatchQueue.main.async {
-            self.constraintTableView.constant = self.tableView.contentSize.height
-            self.tableView.layoutIfNeeded()
-        }
     }
     
     func setConstraints() {
@@ -359,8 +357,21 @@ extension AddSaleViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == self.tableView {
             return saleFormatArray.count
         } else  {
-            return Product.logProducts().count
+            let home = HomeViewController()
+            home.getAllProducts()
+            return home.productsModel.count
+            //            return Product.logProducts().count
         }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == self.productsTableView {
+            return 80
+        } else {
+            return 44
+        }
+        return 50
         
     }
     
@@ -369,11 +380,28 @@ extension AddSaleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = saleFormatArray[indexPath.row]
             
+            cell.selectionStyle = .none
+            let bgColor = UIView()
+            bgColor.backgroundColor = .secondarySystemBackground
+            cell.selectedBackgroundView = bgColor
+            
             return cell
-        } else if tableView == productsTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsAddSaleTableViewCell") as! ProductsAddSaleTableViewCell
-            let product = Product.logProducts()[indexPath.row]
-            cell.set(product: product)
+        } else if tableView == self.productsTableView {
+            let identifier = ProductsAddSaleTableViewCell.identifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! ProductsAddSaleTableViewCell
+            
+            let home = HomeViewController()
+            home.getAllProducts()
+            
+            let product = home.productsModel[indexPath.row]
+            //            let otherProduct = Product.logProducts()[indexPath.row]
+            
+            cell.set(title: product.title, price: String(product.price), image: product.picture!)
+            
+            cell.selectionStyle = .none
+            let bgColor = UIView()
+            bgColor.backgroundColor = .secondarySystemBackground
+            cell.selectedBackgroundView = bgColor
             
             return cell
         }
@@ -384,48 +412,30 @@ extension AddSaleViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: false)
-        
         if tableView == self.tableView {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            saleFormatSelected = saleFormatArray[indexPath.row]
+            print(saleFormatSelected)
             
-            var selectedFilters = [1, 2, 3, 4, 5]
-            
-            // Did the user tap on a selected filter item? If so, do nothing.
-            let selectedFilterRow = selectedFilters[indexPath.row]
-            if selectedFilterRow == indexPath.row {
-                return
-            }
-            
-            // Remove the checkmark from the previously selected filter item.
-            if let previousCell = tableView.cellForRow(at: IndexPath(row: selectedFilterRow, section: indexPath.section)) {
-                previousCell.accessoryType = .none
-            }
-            
-            // Mark the newly selected filter item with a checkmark.
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.accessoryType = .checkmark
-            }
-            
-            // Remember this selected filter item.
-            selectedFilters[indexPath.section] = indexPath.row
+        } else if tableView == self.productsTableView{
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            let home = HomeViewController()
+            home.getAllProducts()
+            productSelected.append(home.productsModel[indexPath.row])
         }
+        
         
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        if tableView == self.tableView {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else if tableView == productsTableView {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
+    }
     
-    //        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-    //        cell.accessoryType = .checkmark
-    
-    //        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
-    //
-    //
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-    //        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .none
-    //    }
-    //
-    //
     
     
 }

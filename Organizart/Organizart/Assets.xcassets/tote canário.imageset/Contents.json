@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tote canário.png",
+      "filename" : "tote canário.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tote canário@2x.png",
+      "filename" : "tote canário@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tote canário@3x.png",
+      "filename" : "tote canário@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
