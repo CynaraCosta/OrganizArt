@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AD95A5828DC9ED9007D902E /* TopSalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */; };
+		3AD95A5928DC9ED9007D902E /* TopProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */; };
+		3AD95A5C28DC9EE8007D902E /* TopProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */; };
+		3AD95A5D28DC9EE8007D902E /* TopSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */; };
 		A40006BF28D8A26300AAA932 /* InvoicingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */; };
 		A44817BC28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A44817BA28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodeld */; };
 		A44817BF28D0A5FB009CF192 /* Produto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */; };
@@ -48,6 +52,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopSalesTableViewCell.swift; path = ../../../../../../Desktop/TopSalesTableViewCell.swift; sourceTree = "<group>"; };
+		3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopProductsTableViewCell.swift; path = ../../../../../../Desktop/TopProductsTableViewCell.swift; sourceTree = "<group>"; };
+		3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopProductsViewController.swift; path = ../../../../../../Desktop/TopProductsViewController.swift; sourceTree = "<group>"; };
+		3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopSalesViewController.swift; path = ../../../../../../Desktop/TopSalesViewController.swift; sourceTree = "<group>"; };
 		A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicingDetailsViewController.swift; sourceTree = "<group>"; };
 		A44817BB28D0A1EC009CF192 /* OrganizartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrganizartDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A44817BD28D0A5FB009CF192 /* Produto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Produto+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -165,6 +173,8 @@
 				C1E42B2B28D4B72F002E8459 /* SaleDetailsViewController.swift */,
 				A40006BE28D8A26300AAA932 /* InvoicingDetailsViewController.swift */,
 				C116467628DB3FD60068ED2D /* AddSaleViewController.swift */,
+				3AD95A5A28DC9EE7007D902E /* TopProductsViewController.swift */,
+				3AD95A5B28DC9EE7007D902E /* TopSalesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +194,8 @@
 				BD1043F328DB3724005FD5EE /* HomeSalesTableViewCell.swift */,
 				C1CFD6A028D8B2F20013F45D /* ProductsChosenTableViewCell.swift */,
 				C1E42B3128D89FBA002E8459 /* SaleDetailsView.swift */,
+				3AD95A5728DC9ED9007D902E /* TopProductsTableViewCell.swift */,
+				3AD95A5628DC9ED9007D902E /* TopSalesTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,14 +299,17 @@
 				C1E42B1E28CF6B11002E8459 /* CatalogSales.swift in Sources */,
 				A44817DA28D100A4009CF192 /* HomeViewController.swift in Sources */,
 				A4A446B328CF5288005E52B9 /* ViewController.swift in Sources */,
+				3AD95A5928DC9ED9007D902E /* TopProductsTableViewCell.swift in Sources */,
 				C1E42B2628D3A44B002E8459 /* ProductSold.swift in Sources */,
 				C116467928DBD4660068ED2D /* ProductsAddSaleTableViewCell.swift in Sources */,
 				A4A446AF28CF5288005E52B9 /* AppDelegate.swift in Sources */,
 				A44817DC28D15222009CF192 /* AddProductViewController.swift in Sources */,
 				C1CFD6A128D8B2F20013F45D /* ProductsChosenTableViewCell.swift in Sources */,
 				A44817CE28D0E996009CF192 /* UIPreview.swift in Sources */,
+				3AD95A5828DC9ED9007D902E /* TopSalesTableViewCell.swift in Sources */,
 				A44817D428D0FBB8009CF192 /* ProductsView.swift in Sources */,
 				C1E42B2A28D4A5EE002E8459 /* CardViewSale.swift in Sources */,
+				3AD95A5C28DC9EE8007D902E /* TopProductsViewController.swift in Sources */,
 				A40006BF28D8A26300AAA932 /* InvoicingDetailsViewController.swift in Sources */,
 				C1E42B2428D2094C002E8459 /* SalesTableViewCell.swift in Sources */,
 				C1E42B1C28CF652D002E8459 /* CatalogProducts.swift in Sources */,
@@ -306,6 +321,7 @@
 				A44817CC28D0B32A009CF192 /* CardViewInvoicing.swift in Sources */,
 				C1E42B2C28D4B72F002E8459 /* SaleDetailsViewController.swift in Sources */,
 				C1E42B1828CF63CC002E8459 /* Product.swift in Sources */,
+				3AD95A5D28DC9EE8007D902E /* TopSalesViewController.swift in Sources */,
 				A44817D628D0FBC0009CF192 /* SalesView.swift in Sources */,
 				A44817E228D27E1E009CF192 /* ProductsViewController+TableViewDatasource+TableViewDelegate.swift in Sources */,
 				C1E42B3228D89FBA002E8459 /* SaleDetailsView.swift in Sources */,
