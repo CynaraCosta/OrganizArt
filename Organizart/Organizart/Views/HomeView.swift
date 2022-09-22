@@ -32,7 +32,7 @@ class HomeView: UIView {
     private let invoicingLabel: UILabel = {
         let invoicingLabel = UILabel()
         invoicingLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 25)
-        invoicingLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        invoicingLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         invoicingLabel.text = "Faturamento"
         invoicingLabel.textColor = .label
         return invoicingLabel
@@ -92,6 +92,7 @@ class HomeView: UIView {
         let seeMoreProductsButton = UIButton(configuration: config)
         seeMoreProductsButton.setTitleColor(UIColor.systemPurple, for: .normal)
         seeMoreProductsButton.setTitle("Ver mais", for: .normal)
+        seeMoreProductsButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12.0)
         return seeMoreProductsButton
         
     }()
@@ -101,6 +102,7 @@ class HomeView: UIView {
         let seeMoreSalesButton = UIButton(configuration: config)
         seeMoreSalesButton.setTitleColor(UIColor.systemPurple, for: .normal)
         seeMoreSalesButton.setTitle("Ver mais", for: .normal)
+        seeMoreSalesButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12.0)
         return seeMoreSalesButton
         
     }()
