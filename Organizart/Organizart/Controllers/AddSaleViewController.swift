@@ -84,6 +84,8 @@ class AddSaleViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.frame.size.height = tableView.contentSize.height
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsSelection = true
+        tableView.allowsMultipleSelection = false
         
         return tableView
         
@@ -95,7 +97,7 @@ class AddSaleViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
-                
+        
     }()
     
     private let inputNewSaleFormat: UITextField = {
@@ -110,7 +112,7 @@ class AddSaleViewController: UIViewController {
                                                        , height: 20))
         newFormat.leftView = paddingView
         newFormat.leftViewMode = .always
-                
+        
         return newFormat
         
     }()
@@ -122,9 +124,9 @@ class AddSaleViewController: UIViewController {
         button.tintColor = UIColor(named: "purple-700")
         button.addTarget(self, action: #selector(addFormat), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return button
-
+        
     }()
     
     private let productsLabel: UILabel = {
@@ -143,10 +145,20 @@ class AddSaleViewController: UIViewController {
         products.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
         products.textColor = .systemGray
         products.translatesAutoresizingMaskIntoConstraints = false
-
-
+        
+        
         return products
-     
+        
+    }()
+    
+    private let labelTeste: UILabel = {
+        let teste = UILabel()
+        teste.translatesAutoresizingMaskIntoConstraints = false
+        teste.font = UIFont.systemFont(ofSize: 24.0, weight: .regular)
+        teste.textColor = .systemRed
+        teste.text = "Testando"
+        return teste
+        
     }()
     
     
@@ -154,7 +166,7 @@ class AddSaleViewController: UIViewController {
     
     var saleFormatArray = ["Instagram", "Whatsapp", "Fenearte", "Feira de Casa Amarela", "Feira Na Laje"]
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -175,25 +187,48 @@ class AddSaleViewController: UIViewController {
         
         
         self.view.backgroundColor = .systemBackground
-      
-}
+        
+    }
     
     func setupScrollView(){
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            contentView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(scrollView)
-            scrollView.addSubview(contentView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .systemRed
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .yellow
+        self.view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+2000)
+        
+        let scrollContentGuide = scrollView.contentLayoutGuide
+        let scrollFrameGuide = scrollView.frameLayoutGuide
+        
+        NSLayoutConstraint.activate([
+//            scrollView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+//            scrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+//            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+//            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//
+            contentView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
             
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        }
+            contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 1200)
+            
+        ])
+        
+        
+    }
     
     func hierarchy() {
         contentView.addSubview(clientLabel)
@@ -208,8 +243,9 @@ class AddSaleViewController: UIViewController {
         contentView.addSubview(productsLabel)
         contentView.addSubview(productsExplanation)
         contentView.addSubview(productsTableView)
+        contentView.addSubview(labelTeste)
         
-
+        
     }
     
     func configureTableView() {
@@ -217,9 +253,9 @@ class AddSaleViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: saleFormatExplained.bottomAnchor, constant: 9),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -430),
+            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -430),
             
         ])
         
@@ -233,33 +269,33 @@ class AddSaleViewController: UIViewController {
         productsTableView.isUserInteractionEnabled = true
         productsTableView.register(ProductsAddSaleTableViewCell.self, forCellReuseIdentifier: "ProductsAddSaleTableViewCell")
         
-//        NSLayoutConstraint.activate([
-//            productsTableView.topAnchor.constraint(equalTo: productsExplanation.bottomAnchor, constant: 25),
-//            productsTableView.heightAnchor.constraint(equalToConstant: 244),
-//            productsTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            productsTableView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            productsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-//            productsTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -200)
-//
-//        ])
-
+        //        NSLayoutConstraint.activate([
+        //            productsTableView.topAnchor.constraint(equalTo: productsExplanation.bottomAnchor, constant: 25),
+        //            productsTableView.heightAnchor.constraint(equalToConstant: 244),
+        //            productsTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        //            productsTableView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+        //            productsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+        //            productsTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -200)
+        //
+        //        ])
+        
     }
     
     func setTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
-
+        
     }
     
     func setTableViewProductsDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
-
+        
     }
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            clientLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 111),
+            clientLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             clientLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             
             inputName.topAnchor.constraint(equalTo: clientLabel.bottomAnchor, constant: 9),
@@ -272,7 +308,7 @@ class AddSaleViewController: UIViewController {
             
             saleFormatExplained.topAnchor.constraint(equalTo: saleFormat.bottomAnchor, constant: 5),
             saleFormatExplained.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-     
+            
             inputNewSaleFormat.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 28),
             inputNewSaleFormat.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             inputNewSaleFormat.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
@@ -288,6 +324,8 @@ class AddSaleViewController: UIViewController {
             productsExplanation.topAnchor.constraint(equalTo: productsLabel.bottomAnchor, constant: 5),
             productsExplanation.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             
+            labelTeste.topAnchor.constraint(equalTo: productsExplanation.bottomAnchor, constant: 400),
+            labelTeste.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             
             
         ])
@@ -306,14 +344,14 @@ extension AddSaleViewController: UITableViewDelegate, UITableViewDataSource {
         } else  {
             return Product.logProducts().count
         }
-            
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == self.tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = saleFormatArray[indexPath.row]
-                    
+            
             return cell
         } else if tableView == productsTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsAddSaleTableViewCell") as! ProductsAddSaleTableViewCell
@@ -330,12 +368,43 @@ extension AddSaleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        cell.accessoryType = .checkmark
+        var selectedFilters = [1, 2, 3, 4, 5]
 
-    }
-    
-    
+        // Did the user tap on a selected filter item? If so, do nothing.
+            let selectedFilterRow = selectedFilters[indexPath.row]
+            if selectedFilterRow == indexPath.row {
+                return
+            }
+
+            // Remove the checkmark from the previously selected filter item.
+            if let previousCell = tableView.cellForRow(at: IndexPath(row: selectedFilterRow, section: indexPath.section)) {
+                previousCell.accessoryType = .none
+            }
+
+            // Mark the newly selected filter item with a checkmark.
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.accessoryType = .checkmark
+            }
+
+            // Remember this selected filter item.
+            selectedFilters[indexPath.section] = indexPath.row
+        }
+
+//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+//        cell.accessoryType = .checkmark
+        
+//        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
+//
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .none
+//    }
+//
+//
     
     
 }
+
+
