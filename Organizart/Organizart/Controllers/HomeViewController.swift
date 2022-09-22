@@ -9,9 +9,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let tableView = UITableView()
-    let scrollView = UIScrollView()
     let contentView = UIView()
+    
+    let salesTableView = UITableView()
     
     
     private let collectionView = UICollectionView(
@@ -32,50 +32,27 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         getAllProducts()
         self.view = HomeView_
+                
+//        collectionView.isScrollEnabled = true
+//        collectionView.isUserInteractionEnabled = true
+//        collectionView.alwaysBounceHorizontal = true
         
-        view.addSubview(scrollView)
-        scrollView.backgroundColor = .green
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height * 2)
-        
-        
-        collectionView.isScrollEnabled = true
-        collectionView.isUserInteractionEnabled = true
-        collectionView.alwaysBounceHorizontal = true
-        
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.itemSize = CGSize(width: 194, height: 234)
-        }
+//        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            layout.scrollDirection = .horizontal
+//            layout.itemSize = CGSize(width: 194, height: 234)
+//        }
         
         //view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
+//        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
         
+        print("celula carregou?")
+        salesTableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
+        salesTableView.delegate = self
+        salesTableView.dataSource = self
+//        salesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-//        view.addSubview(tableView)
-        tableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        
-        scrollView.addSubview(tableView)
-        
-        tableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3/4).isActive = true
-        
-        
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            collectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
-//            collectionView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 400),
-//            collectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -32),
-//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 3)
-//        ])
-        
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,19 +67,18 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        //let scrollView = UIScrollView(frame: view.bounds)
-//        scrollView.backgroundColor = .green
-//        view.addSubview(scrollView)
-//        scrollView.addSubview(collectionView)
-        
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height * 2)
-        
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+//        view.addSubview(salesTableView)
+//        salesTableView.translatesAutoresizingMaskIntoConstraints = false
 //        NSLayoutConstraint.activate([
-//            tableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true,
-//            tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-//            tableView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3/4).isActive = true
+//            salesTableView.topAnchor.constraint(equalTo: view.topAnchor,constant: -50),
+//            salesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            salesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            salesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 50)
 //        ])
+
+        
+
         
         
 //        scrollView.addSubview(tableView)
@@ -155,25 +131,24 @@ class HomeViewController: UIViewController {
         }
         
     }
-    
-//    func updateProduct(titleProduct: Produto_CoreData){
-//
-//    }
+
 
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeSalesTableViewCell.identifier, for: indexPath)
-        
+
         return cell
     }
 }
+
+
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     

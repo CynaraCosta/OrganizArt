@@ -10,6 +10,8 @@ import UIKit
 class HomeView: UIView {
     
     let card = CardViewInvoicing()
+    let scrollView = UIScrollView()
+    
 
     private let cardView: UIView = {
         let cardView = UIView()
@@ -52,13 +54,44 @@ class HomeView: UIView {
         return topSaleFormat
     }()
     
+    let salesTableView: UITableView = {
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height/4
+        let salesTableView = UITableView()
+        
+        salesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        salesTableView.translatesAutoresizingMaskIntoConstraints = false
+        salesTableView.register(HomeSalesTableViewCell.self, forCellReuseIdentifier: HomeSalesTableViewCell.identifier)
+        
+        return salesTableView
+    }()
+    
+    let productsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.itemSize = CGSize(width: 194, height: 234)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.isScrollEnabled = true
+        collectionView.isUserInteractionEnabled = true
+        collectionView.alwaysBounceHorizontal = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(HomeProductsCell.self, forCellWithReuseIdentifier: HomeProductsCell.identifier)
+        
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         addSubview(backgroundView)
-        addSubview(invoicingLabel)
-        addSubview(card)
-        addSubview(topProduct)
+        addSubview(scrollView)
+        scrollView.addSubview(invoicingLabel)
+        scrollView.addSubview(card)
+        scrollView.addSubview(topProduct)
+        scrollView.addSubview(salesTableView)
+        scrollView.addSubview(productsCollectionView)
         setupConstraints()
         
     }
@@ -70,7 +103,18 @@ class HomeView: UIView {
     
     
     func setupConstraints(){
-
+        
+        scrollView.backgroundColor = .green
+        scrollView.contentSize = CGSize(width: self.frame.width, height: self.frame.height * 2)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
@@ -97,7 +141,37 @@ class HomeView: UIView {
             topProduct.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 24),
             topProduct.leadingAnchor.constraint(equalTo: card.leadingAnchor),
         ])
+        
+        NSLayoutConstraint.activate([
+            salesTableView.topAnchor.constraint(equalTo: topProduct.bottomAnchor),
+            salesTableView.leadingAnchor.constraint(equalTo: card.leadingAnchor),
+            salesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            productsCollectionView.topAnchor.constraint(equalTo: salesTableView.bottomAnchor,constant: 5),
+            productsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            productsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 50)
+        ])
 
+    }
+    
+    
+}
+
+extension HomeView {
+    
+    func setTableViewDataSourceDelegate(){
+        salesTableView.dataSource = HomeViewController()
+        salesTableView.delegate = HomeViewController()
+        salesTableView.reloadData()
+    }
+    
+    func setCollectionViewDataSource(){
+        productsCollectionView.dataSource = HomeViewController()
+        productsCollectionView.delegate = HomeViewController()
+        productsCollectionView.reloadData()
+        
     }
     
     
