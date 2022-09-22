@@ -84,14 +84,14 @@ class SaleDetailsViewController: UIViewController {
     }()
     
     private var buttonDelete: UIButton = {
-            let buttonDelete = UIButton()
-            buttonDelete.setTitle("Excluir venda", for: .normal)
-            buttonDelete.titleLabel?.textColor = .label
-            buttonDelete.backgroundColor = UIColor(named: "red-700")
-            buttonDelete.layer.cornerRadius = 8
-            buttonDelete.translatesAutoresizingMaskIntoConstraints = false
-
-            return buttonDelete
+        let buttonDelete = UIButton()
+        buttonDelete.setTitle("Excluir venda", for: .normal)
+        buttonDelete.titleLabel?.textColor = .label
+        buttonDelete.backgroundColor = UIColor(named: "red-700")
+        buttonDelete.layer.cornerRadius = 8
+        buttonDelete.translatesAutoresizingMaskIntoConstraints = false
+        
+        return buttonDelete
         
         }()
     

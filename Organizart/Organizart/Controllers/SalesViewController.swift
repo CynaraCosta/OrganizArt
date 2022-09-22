@@ -8,16 +8,40 @@
 import UIKit
 
 class SalesViewController: UIViewController {
+    
+    @objc private func addProduct(){
+        let rootVC = AddSaleViewController()
+        rootVC.view.backgroundColor = UIColor(named: "purple-80")
+        rootVC.title = "Adicionar venda"
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        
+        self.present(navVC, animated: true)
+        
+    }
 
     let salesView = SalesView()
     var tableView = UITableView()
     var salesArray: [Sale] = []
+    
+    private let buttonPlus: UIButton = {
+        let buttonPlus = UIButton()
+        buttonPlus.setImage(UIImage(named: "plus"), for: .normal)
+        buttonPlus.contentMode = .scaleAspectFit
+        buttonPlus.tintColor = .label
+        buttonPlus.translatesAutoresizingMaskIntoConstraints = false
+        buttonPlus.addTarget(self, action: #selector(addProduct), for: .touchUpInside)
+        
+        return buttonPlus
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         salesArray = Sale.logSales()
         self.view = salesView
         self.view.addSubview(tableView)
+        self.view.addSubview(buttonPlus)
         configureTableView()
     }
     
@@ -38,7 +62,11 @@ class SalesViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 188),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            buttonPlus.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            buttonPlus.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32)
+                
         ])
     }
     
@@ -47,16 +75,6 @@ class SalesViewController: UIViewController {
         tableView.dataSource = self
 
     }
-    
-//    @objc private func didTapCell() {
-//        let rootVC = SaleDetailsViewController(productsArray: salesArray[indexPath.row])
-//        rootVC.view.backgroundColor = UIColor(named: "purple-80")
-//        rootVC.title = "Detalhes da venda"
-//        let navVC = UINavigationController(rootViewController: rootVC)
-//        navVC.modalPresentationStyle = .fullScreen
-//        present(navVC, animated: true)
-//    }
-//
 
 }
 
