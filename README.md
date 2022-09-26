@@ -18,13 +18,18 @@ Adicionar Produto | Vendas
 :-------------------------:|:-------------------------:
 <img src="" alt="Adicionar Produto" width="320" height="667">  | <img src="" alt="Vendas" width="320" height="667">
 
-Adicionar venda | Top meios de venda
+Detalhes produto | Adicionar venda
 :-------------------------:|:-------------------------:
-<img src="" alt="Adicionar venda" width="320" height="667">  | <img src="" alt="Top meios de venda" width="320" height="667">
+<img src="" alt="Detalhes produto" width="320" height="667"> | <img src="" alt="Adicionar venda" width="320" height="667">
 
-Top produtos mais vendidos
+Top meios de venda | Top produtos mais vendidos
+:-------------------------:|:-------------------------:
+<img src="" alt="Top produtos mais vendidos" width="320" height="667"> | <img src="" alt="Top meios de venda" width="320" height="667">  
+
+Detalhes venda
 :-------------------------:|
-<img src="" alt="Top produtos mais vendidos" width="320" height="667">  
+<img src="" alt="Detalhes venda" width="320" height="667">  
+
 
 ## Frameworks 📚
 
